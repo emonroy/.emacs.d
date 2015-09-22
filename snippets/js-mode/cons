@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# key: cons
+# name: cons
+# --
+function ${1:Object} ($2) {
+     $3
+}
+$0

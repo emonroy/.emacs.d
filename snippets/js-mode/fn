@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# key: fn
+# name: fn
+# --
+function($1) {$2}$0

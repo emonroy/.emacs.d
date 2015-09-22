@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: key
+# name: while
+# --
+while (${1:cond}) {
+    $2
+}
+$0

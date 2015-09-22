@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# key: finally
+# name: finally
+# --
+finally {
+    $1
+}
+$0

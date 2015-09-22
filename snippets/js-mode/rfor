@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# key: rfor
+# name: rfor
+# --
+for (var i = ${1:n}; i--;) {
+    $2
+}
+$0

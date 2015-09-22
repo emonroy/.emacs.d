@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# key: case
+# name: case
+# --
+case ${1:val}:
+    $2
+    break;
+$0
