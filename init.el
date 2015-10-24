@@ -1,5 +1,8 @@
 ;; .emacs.d by E. Monroy
 ;;
+;; Dependencies ----------------------------------------------------------------
+;; ag, tern
+;;
 ;; Custom bindings -------------------------------------------------------------
 ;; undo                      -- C-z       -- undo
 ;; windmove                  -- M-<up>    -- move to frame above
@@ -162,6 +165,7 @@
   (setq ac-auto-show-menu nil))
 
 (use-package column-enforce-mode
+  :disabled t
   :ensure t
   :diminish column-enforce-mode
   :config
@@ -330,12 +334,14 @@
   :ensure t)
 
 (use-package theme-changer
-  :disabled t
   :ensure t
   :config
-  (setq calendar-location-name "Spain"
-        calendar-latitude 38.68
-        calendar-longitude -4.1)
+  ;; (setq calendar-location-name "Spain"
+  ;;       calendar-latitude 38.68
+  ;;       calendar-longitude -4.1)
+  (setq calendar-location-name "San Francisco, CA"
+        calendar-latitude 37.47
+        calendar-longitude 112.25)
   (change-theme 'sanityinc-tomorrow-blue 'sanityinc-tomorrow-bright))
 
 (custom-set-variables
@@ -358,4 +364,4 @@
  '(yascroll:thumb-fringe ((t (:background "gold" :foreground "gold"))))
  '(yascroll:thumb-text-area ((t (:background "gold" :foreground "black")))))
 
-(provide '.emacs)
+(provide '.init)
