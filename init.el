@@ -341,7 +341,7 @@
   ;;       calendar-longitude -4.1)
   (setq calendar-location-name "San Francisco, CA"
         calendar-latitude 37.47
-        calendar-longitude 112.25)
+        calendar-longitude -112.25)
   (change-theme 'sanityinc-tomorrow-blue 'sanityinc-tomorrow-bright))
 
 (custom-set-variables
