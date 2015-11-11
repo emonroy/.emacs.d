@@ -175,6 +175,9 @@
   :ensure t
   :diminish flycheck-mode
   :config
+  (defun c++11-mode-hook ()
+    (setq flycheck-gcc-language-standard "c++11"))
+  (add-hook 'c++-mode-hook 'c++11-mode-hook)
   (add-hook 'prog-mode-hook 'flycheck-mode))
 
 (use-package flycheck-pos-tip
