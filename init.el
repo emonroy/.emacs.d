@@ -48,6 +48,7 @@
   (global-hl-line-mode)
   (delete-selection-mode)
   (ido-mode)
+  (global-auto-revert-mode t)
   (setq inhibit-startup-screen t
         make-backup-files nil
         browse-url-browser-function 'browse-url-generic
