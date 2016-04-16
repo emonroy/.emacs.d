@@ -276,6 +276,10 @@
   (add-hook 'emacs-lisp-mode-hook 'rainbow-mode)
   (add-hook 'less-css-mode-hook 'rainbow-mode))
 
+(use-package lua-mode
+  :ensure t
+  :mode "\\.lua\\'")
+
 (use-package js2-mode
   :ensure t
   :mode "\\.js\\'"
