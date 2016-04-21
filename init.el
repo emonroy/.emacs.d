@@ -263,8 +263,8 @@
 
 (use-package less-css-mode
   :ensure t
-  :mode (("\\.less\\'" . less-css-mode)
-         ("\\.css\\'" . less-css-mode))
+  :mode ("\\.less\\'"
+         "\\.css\\'")
   :config
   (add-hook 'less-css-mode-hook 'ac-css-mode-setup))
 
@@ -278,7 +278,9 @@
 
 (use-package lua-mode
   :ensure t
-  :mode "\\.lua\\'")
+  :mode "\\.lua\\'"
+  :config
+  (setq-default lua-indent-level 2))
 
 (use-package js2-mode
   :ensure t
