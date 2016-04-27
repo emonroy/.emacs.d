@@ -28,9 +28,11 @@
              '("melpa" . "http://melpa.org/packages/"))
 (when (< emacs-major-version 24)
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+(setq package-enable-at-startup nil)
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
+  (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
 
