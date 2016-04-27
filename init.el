@@ -78,6 +78,7 @@
 
 (use-package smooth-scrolling
   :ensure t
+  :init (smooth-scrolling-mode)
   :config
   (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))
         mouse-wheel-progressive-speed nil
