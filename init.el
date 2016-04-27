@@ -72,19 +72,19 @@
 
 (use-package whitespace
   :diminish global-whitespace-mode
-  :init (global-whitespace-mode)
   :config
   (setq-default indent-tabs-mode nil)
   (setq whitespace-style '(empty trailing tab-mark)
-        whitespace-action '(auto-cleanup)))
+        whitespace-action '(auto-cleanup))
+  (global-whitespace-mode))
 
 (use-package smooth-scrolling
   :ensure t
-  :init (smooth-scrolling-mode)
   :config
   (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))
         mouse-wheel-progressive-speed nil
-        mouse-wheel-follow-mouse 't))
+        mouse-wheel-follow-mouse 't)
+  (smooth-scrolling-mode))
 
 (use-package expand-region
   :ensure t
@@ -113,9 +113,9 @@
 
 (use-package yascroll
   :ensure t
-  :init (global-yascroll-bar-mode)
   :config
-  (setq-default yascroll:delay-to-hide nil))
+  (setq-default yascroll:delay-to-hide nil)
+  (global-yascroll-bar-mode))
 
 (use-package smart-mode-line
   :ensure t
@@ -126,27 +126,28 @@
 
 (use-package flx-ido
   :ensure t
-  :init (flx-ido-mode)
   :config
   (setq ido-enable-dot-prefix t
-        ido-enable-flex-matching t))
+        ido-enable-flex-matching t)
+  (flx-ido-mode))
 
 (use-package ido-vertical-mode
   :ensure t
-  :init (ido-vertical-mode)
   :config
-  (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right))
+  (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
+  (ido-vertical-mode))
 
 (use-package ido-ubiquitous
   :ensure t
-  :init (ido-ubiquitous-mode)
   :config
-  (setq ido-everywhere t))
+  (setq ido-everywhere t)
+  (ido-ubiquitous-mode))
 
 (use-package smex
   :ensure t
-  :init (smex-initialize)
-  :bind (("M-x" . smex)))
+  :bind (("M-x" . smex))
+  :config
+  (smex-initialize))
 
 (use-package yasnippet
   :ensure t
@@ -187,7 +188,7 @@
 
 (use-package flycheck-pos-tip
   :ensure t
-  :init
+  :config
   (setq flycheck-display-errors-function #'flycheck-pos-tip-error-messages))
 
 (use-package helm
