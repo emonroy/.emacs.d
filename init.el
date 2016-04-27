@@ -98,6 +98,7 @@
 
 (use-package golden-ratio
   :ensure t
+  :disabled t
   :diminish golden-ratio-mode
   :config
   (setq golden-ratio-auto-scale t)
