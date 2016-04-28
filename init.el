@@ -371,13 +371,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(column-enforce-face ((t (:underline (:color "#e78c45" :style wave)))))
- '(helm-swoop-line-number-face ((t (:foreground "DarkOrange1"))))
- '(helm-swoop-target-line-block-face ((t (:inherit highlight))))
- '(helm-swoop-target-line-face ((t (:inherit higlight))))
- '(helm-swoop-target-word-face ((t (:foreground "gold" :underline t))))
- '(js2-external-variable ((t (:inherit error :foreground nil))))
- '(yascroll:thumb-fringe ((t (:background "gold" :foreground "gold"))))
- '(yascroll:thumb-text-area ((t (:background "gold" :foreground "black")))))
-
+ '(column-enforce-face ((t (:underline (:color "#b58900" :style wave)))))
+ '(helm-selection ((t (:background "#073642" :underline nil))))
+ '(js2-external-variable ((t (:inherit error :foreground nil)))))
 (provide '.init)
