@@ -344,13 +344,10 @@
   :config
   (c-set-offset 'inline-open 0))
 
-(use-package color-theme-sanityinc-tomorrow
+(use-package solarized-theme
   :ensure t
   :config
-  (load-theme 'sanityinc-tomorrow-bright t))
-
-(use-package color-theme-sanityinc-solarized
-  :ensure t)
+  (setq solarized-distinct-fringe-background t))
 
 (use-package theme-changer
   :ensure t
@@ -361,7 +358,7 @@
   (setq calendar-location-name "San Francisco, CA"
         calendar-latitude 37.47
         calendar-longitude -112.25)
-  (change-theme 'sanityinc-tomorrow-blue 'sanityinc-tomorrow-bright))
+  (change-theme 'solarized-light 'solarized-dark))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
