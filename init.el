@@ -190,11 +190,6 @@
   (add-hook 'c++-mode-hook 'c++11-mode-hook)
   (add-hook 'prog-mode-hook 'flycheck-mode))
 
-(use-package flycheck-pos-tip
-  :ensure t
-  :config
-  (setq flycheck-display-errors-function #'flycheck-pos-tip-error-messages))
-
 (use-package helm
   :ensure t
   :bind (("C-c x" . helm-M-x)
