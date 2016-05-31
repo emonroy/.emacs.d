@@ -251,6 +251,7 @@
                 web-mode-style-padding 2
                 web-mode-script-padding 2
                 web-mode-block-padding 0
+                web-mode-enable-current-element-highlight t
                 web-mode-ac-sources-alist '(("css" . (ac-source-css-property))
                                             ("html" . (ac-source-words-in-buffer
                                                        ac-source-abbrev)))))
