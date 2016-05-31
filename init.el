@@ -255,16 +255,6 @@
                                             ("html" . (ac-source-words-in-buffer
                                                        ac-source-abbrev)))))
 
-(use-package ac-html
-  :ensure t
-  :config  (require 'web-mode)
-  (add-hook 'web-mode-hook 'ac-html-enable)
-  (add-to-list 'web-mode-ac-sources-alist '("html" . (ac-source-html-attribute-value
-                                                      ac-source-html-tag
-                                                      ac-source-html-attribute
-                                                      ac-source-words-in-buffer
-                                                      ac-source-abbrev))))
-
 (use-package less-css-mode
   :ensure t
   :mode ("\\.less\\'"
@@ -305,22 +295,6 @@
                                      "GameEvents"))
   (setq js2-include-node-externs t
         js2-strict-trailing-comma-warning nil))
-
-(use-package tern
-  :ensure t
-  :diminish tern-mode
-  :config
-  (add-hook 'js2-mode-hook 'tern-mode))
-
-(use-package tern-auto-complete
-  :ensure t
-  :config
-  (tern-ac-setup))
-
-(use-package jquery-doc
-  :ensure t
-  :config
-  (add-hook 'js2-mode-hook 'jquery-doc-setup))
 
 (use-package dummy-h-mode
   :ensure t
