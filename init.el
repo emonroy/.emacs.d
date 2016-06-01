@@ -289,18 +289,7 @@
   :mode "\\.js\\'"
   :config
   (setq-default js2-global-externs '("$"
-                                     "jQuery"
-                                     "_"
-                                     "Backbone"
-                                     "hello"
-                                     "Whizz"
-                                     "Namespace"
-                                     "Constants"
-                                     "Messages"
-                                     "Api"
-                                     "Config"
-                                     "Utils"
-                                     "GameEvents"))
+                                     "_"))
   (setq js2-include-node-externs t
         js2-strict-trailing-comma-warning nil))
 
