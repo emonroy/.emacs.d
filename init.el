@@ -107,15 +107,13 @@
 
 (use-package golden-ratio
   :ensure t
-  :disabled t
   :diminish golden-ratio-mode
   :config
-  (setq golden-ratio-auto-scale t)
   (defun pl/helm-alive-p ()
     (if (boundp 'helm-alive-p)
         (symbol-value 'helm-alive-p)))
   (add-to-list 'golden-ratio-inhibit-functions 'pl/helm-alive-p)
-  (add-hook 'prog-mode-hook 'golden-ratio-mode))
+  (golden-ratio-mode))
 
 (use-package yascroll
   :ensure t
