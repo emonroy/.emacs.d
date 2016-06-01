@@ -246,11 +246,10 @@
                 web-mode-style-padding 2
                 web-mode-script-padding 2
                 web-mode-block-padding 0
+                web-mode-enable-auto-quoting nil
+                web-mode-enable-auto-pairing nil
                 web-mode-enable-current-element-highlight t
-                web-mode-ac-sources-alist '(("css" . (ac-source-css-property
-                                                      ac-source-words-in-buffer
-                                                      ac-source-words-in-same-mode-buffers))
-                                            ("html" . (ac-source-words-in-buffer
+                web-mode-ac-sources-alist '(("html" . (ac-source-words-in-buffer
                                                        ac-source-words-in-all-buffer)))))
 
 (use-package less-css-mode
