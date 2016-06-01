@@ -172,7 +172,10 @@
   (ac-config-default)
   (ac-set-trigger-key "TAB")
   (ac-set-trigger-key "<tab>")
-  (setq ac-auto-show-menu nil))
+  (setq ac-use-menu-map t)
+  (setq-default ac-sources '(ac-source-words-in-buffer
+                             ac-source-words-in-same-mode-buffers
+                             ac-source-words-in-all-buffer)))
 
 (use-package column-enforce-mode
   :disabled t
@@ -252,9 +255,11 @@
                 web-mode-script-padding 2
                 web-mode-block-padding 0
                 web-mode-enable-current-element-highlight t
-                web-mode-ac-sources-alist '(("css" . (ac-source-css-property))
+                web-mode-ac-sources-alist '(("css" . (ac-source-css-property
+                                                      ac-source-words-in-buffer
+                                                      ac-source-words-in-same-mode-buffers))
                                             ("html" . (ac-source-words-in-buffer
-                                                       ac-source-abbrev)))))
+                                                       ac-source-words-in-all-buffer)))))
 
 (use-package less-css-mode
   :ensure t
