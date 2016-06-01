@@ -1,7 +1,7 @@
 ;; .emacs.d by E. Monroy
 ;;
 ;; Dependencies ----------------------------------------------------------------
-;; ag, tern
+;; ag
 ;;
 ;; Custom bindings -------------------------------------------------------------
 ;; undo                      -- C-z       -- undo
@@ -22,6 +22,8 @@
 ;; helm-swoop                -- C-c s     -- search in buffer
 ;; helm-multi-swoop-all      -- C-c S     -- search in all buffers
 ;; helm-projectile-find-file -- C-c f     -- search file in project
+;; auto-complete             -- <tab>     -- auto complete
+;; yas-expand                -- C-<tab>   -- expand snippet
 
 (require 'package)
 (add-to-list 'package-archives
