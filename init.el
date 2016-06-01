@@ -177,13 +177,6 @@
                              ac-source-words-in-same-mode-buffers
                              ac-source-words-in-all-buffer)))
 
-(use-package column-enforce-mode
-  :disabled t
-  :ensure t
-  :diminish column-enforce-mode
-  :config
-  (add-hook 'prog-mode-hook 'column-enforce-mode))
-
 (use-package flycheck
   :ensure t
   :diminish flycheck-mode
@@ -222,10 +215,9 @@
     (interactive)
     (setq current-prefix-arg 4)
     (helm-swoop))
-  (setq helm-swoop-speed-or-color t
-        helm-swoop-move-to-line-cycle nil
-        helm-swoop-use-line-number-face t
-        helm-swoop-split-with-multiple-windows t
+  (set-face-attribute 'helm-selection nil
+                      :underline nil)
+  (setq helm-swoop-split-with-multiple-windows t
         helm-swoop-pre-input-function (lambda () "")))
 
 (use-package projectile
@@ -324,18 +316,4 @@
         calendar-longitude -112.25)
   (change-theme 'solarized-light 'solarized-dark))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(column-enforce-face ((t (:underline (:color "#b58900" :style wave)))))
- '(helm-selection ((t (:background "#073642" :underline nil))))
- '(js2-external-variable ((t (:inherit error :foreground nil)))))
 (provide '.init)
