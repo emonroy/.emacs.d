@@ -56,11 +56,10 @@
   (global-hl-line-mode)
   (delete-selection-mode)
   (ido-mode)
-  (global-auto-revert-mode t)
+  (global-auto-revert-mode)
   (setq inhibit-startup-screen t
         make-backup-files nil
-        browse-url-browser-function 'browse-url-generic
-        browse-url-generic-program "google-chrome")
+        dired-listing-switches "-alh")
   (fset 'yes-or-no-p 'y-or-n-p))
 
 (use-package paradox
@@ -71,6 +70,7 @@
 (use-package bind-key
   :ensure t
   :bind (("C-z" . undo)
+         ("M-SPC" . cycle-spacing)
          ("M-<up>" . windmove-up)
          ("M-<right>" . windmove-right)
          ("M-<down>" . windmove-down)
