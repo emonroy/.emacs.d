@@ -53,7 +53,10 @@
   :config
   (setq-default inhibit-startup-screen t
                 make-backup-files nil
-                dired-listing-switches "-alh")
+                dired-listing-switches "-alh"
+                scroll-conservatively 101
+                mouse-wheel-scroll-amount '(1)
+                mouse-wheel-progressive-speed nil)
   (fset 'yes-or-no-p 'y-or-n-p)
 
   (menu-bar-mode -1)
@@ -77,15 +80,6 @@
                 whitespace-action '(auto-cleanup))
 
   (global-whitespace-mode))
-
-(use-package smooth-scrolling
-  :ensure t
-  :config
-  (setq-default mouse-wheel-scroll-amount '(1 ((shift) . 1))
-                mouse-wheel-progressive-speed nil
-                mouse-wheel-follow-mouse 't)
-
-  (smooth-scrolling-mode))
 
 (use-package yascroll
   :ensure t
