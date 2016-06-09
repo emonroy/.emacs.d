@@ -291,7 +291,7 @@
 
   (defun init-less-css-mode ()
     (setq ac-sources (append ac-sources '(ac-source-css-property
-                                          ac-source-word-in-all-buffer)))
+                                          ac-source-words-in-all-buffer)))
     (rainbow-mode))
 
   (add-hook 'less-css-mode-hook 'init-less-css-mode))
