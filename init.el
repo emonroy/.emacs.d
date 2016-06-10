@@ -88,14 +88,6 @@
 
   (global-yascroll-bar-mode))
 
-(use-package smart-mode-line
-  :ensure t
-  :config
-  (setq-default sml/no-confirm-load-theme t
-                sml/theme 'respectful)
-
-  (sml/setup))
-
 (use-package bind-key
   :ensure t
   :bind (("C-z" . undo)
@@ -350,7 +342,8 @@
 (use-package solarized-theme
   :ensure t
   :config
-  (setq-default solarized-distinct-fringe-background t))
+  (setq-default solarized-distinct-fringe-background t
+                solarized-high-contrast-mode-line t))
 
 (use-package theme-changer
   :ensure t
