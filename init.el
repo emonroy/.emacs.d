@@ -52,12 +52,14 @@
   (provide 'emacs-config)
   :config
   (setq-default inhibit-startup-screen t
+                custom-file "~/.emacs.d/custom.el"
                 make-backup-files nil
                 dired-listing-switches "-alh"
                 scroll-conservatively 101
                 mouse-wheel-scroll-amount '(1)
                 mouse-wheel-progressive-speed nil)
   (fset 'yes-or-no-p 'y-or-n-p)
+  (load custom-file t)
 
   (menu-bar-mode -1)
   (tool-bar-mode -1)
