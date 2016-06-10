@@ -105,6 +105,14 @@
          ("M-<down>" . windmove-down)
          ("M-<left>" . windmove-left)))
 
+(use-package anzu
+  :ensure t
+  :demand t
+  :diminish anzu-mode
+  :bind (("C-c %" . anzu-query-replace))
+  :config
+  (global-anzu-mode))
+
 (use-package expand-region
   :ensure t
   :bind (("C-+" . er/expand-region)))
