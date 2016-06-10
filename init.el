@@ -211,7 +211,7 @@
 
 (use-package auto-complete
   :ensure t
-  :diminish
+  :diminish auto-complete-mode
   :config
   (require 'auto-complete-config)
   (setq-default ac-use-menu-map t
