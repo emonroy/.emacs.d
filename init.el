@@ -127,10 +127,14 @@
 
 (use-package anzu
   :ensure t
-  ;; :demand t
+  :demand t
   :diminish anzu-mode
   :bind (("C-c %" . anzu-query-replace))
   :config
+  (set-face-attribute 'anzu-mode-line nil
+                      :inherit 'mode-line
+                      :foreground nil)
+
   (global-anzu-mode))
 
 (use-package expand-region
@@ -184,7 +188,10 @@
          ("C-c b" . helm-mini))
   :config
   (setq-default helm-split-window-in-side-p t
-                helm-M-x-fuzzy-match t))
+                helm-M-x-fuzzy-match t)
+
+  (set-face-attribute 'helm-selection nil
+                      :underline nil))
 
 (use-package helm-ag
   :ensure t
