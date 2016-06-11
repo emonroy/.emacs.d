@@ -51,23 +51,22 @@
 
 ;; Themes ----------------------------------------------------------------------
 
+(defun get-hour ()
+  (string-to-number (substring (current-time-string) 11 13)))
+
+(defun is-day (hour)
+  (when (member hour (number-sequence 6 18))
+    t))
+
 (use-package solarized-theme
   :ensure t
   :config
   (setq-default solarized-distinct-fringe-background t
-                solarized-high-contrast-mode-line t))
+                solarized-high-contrast-mode-line t)
 
-(use-package theme-changer
-  :ensure t
-  :config
-  ;; (setq-default calendar-location-name "Spain"
-  ;;               calendar-latitude 38.68
-  ;;               calendar-longitude -4.1)
-  (setq-default calendar-location-name "San Francisco, CA"
-                calendar-latitude 37.47
-                calendar-longitude -112.25)
-
-  (change-theme 'solarized-light 'solarized-dark))
+  (if (is-day (get-hour))
+      (load-theme 'solarized-light t)
+    (load-theme 'solarized-dark t)))
 
 ;; Basic configuration ---------------------------------------------------------
 
