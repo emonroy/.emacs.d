@@ -25,6 +25,8 @@
 ;; auto-complete             -- <tab>     -- auto complete
 ;; yas-expand                -- C-<tab>   -- expand snippet
 
+;; Package management ----------------------------------------------------------
+
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/"))
@@ -46,6 +48,28 @@
   :ensure t
   :config
   (setq-default paradox-github-token -1))
+
+;; Themes ----------------------------------------------------------------------
+
+(use-package solarized-theme
+  :ensure t
+  :config
+  (setq-default solarized-distinct-fringe-background t
+                solarized-high-contrast-mode-line t))
+
+(use-package theme-changer
+  :ensure t
+  :config
+  ;; (setq-default calendar-location-name "Spain"
+  ;;               calendar-latitude 38.68
+  ;;               calendar-longitude -4.1)
+  (setq-default calendar-location-name "San Francisco, CA"
+                calendar-latitude 37.47
+                calendar-longitude -112.25)
+
+  (change-theme 'solarized-light 'solarized-dark))
+
+;; Basic configuration ---------------------------------------------------------
 
 (use-package emacs-config
   :init
@@ -103,7 +127,7 @@
 
 (use-package anzu
   :ensure t
-  :demand t
+  ;; :demand t
   :diminish anzu-mode
   :bind (("C-c %" . anzu-query-replace))
   :config
@@ -128,6 +152,8 @@
   :config
   (smex-initialize))
 
+;; Ido -------------------------------------------------------------------------
+
 (use-package flx-ido
   :ensure t
   :config
@@ -150,16 +176,15 @@
 
   (ido-ubiquitous-mode))
 
+;; Helm   ----------------------------------------------------------------------
+
 (use-package helm
   :ensure t
   :bind (("C-c x" . helm-M-x)
          ("C-c b" . helm-mini))
   :config
   (setq-default helm-split-window-in-side-p t
-                helm-M-x-fuzzy-match t)
-
-  (set-face-attribute 'helm-selection nil
-                      :underline nil))
+                helm-M-x-fuzzy-match t))
 
 (use-package helm-ag
   :ensure t
@@ -340,26 +365,6 @@
   :mode "\\.lua\\'"
   :config
   (setq-default lua-indent-level 2))
-
-;; Themes ----------------------------------------------------------------------
-
-(use-package solarized-theme
-  :ensure t
-  :config
-  (setq-default solarized-distinct-fringe-background t
-                solarized-high-contrast-mode-line t))
-
-(use-package theme-changer
-  :ensure t
-  :config
-  ;; (setq-default calendar-location-name "Spain"
-  ;;               calendar-latitude 38.68
-  ;;               calendar-longitude -4.1)
-  (setq-default calendar-location-name "San Francisco, CA"
-                calendar-latitude 37.47
-                calendar-longitude -112.25)
-
-  (change-theme 'solarized-light 'solarized-dark))
 
 
 (provide 'init)
