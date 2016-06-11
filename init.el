@@ -51,10 +51,10 @@
 
 ;; Themes ----------------------------------------------------------------------
 
-(defun get-hour ()
+(defun current-hour ()
   (string-to-number (substring (current-time-string) 11 13)))
 
-(defun is-day (hour)
+(defun is-daylight-hour (hour)
   (when (member hour (number-sequence 6 18))
     t))
 
@@ -64,11 +64,20 @@
   (setq-default solarized-distinct-fringe-background t
                 solarized-high-contrast-mode-line t)
 
-  (if (is-day (get-hour))
+  (if (is-daylight-hour (current-hour))
       (load-theme 'solarized-light t)
     (load-theme 'solarized-dark t)))
 
 ;; Basic configuration ---------------------------------------------------------
+
+(defun display-width ()
+  (if window-system
+      (x-display-pixel-width)
+    0))
+
+(defun is-hd-display (width)
+  (when (>= width 1920)
+    t))
 
 (use-package emacs-config
   :init
@@ -85,6 +94,10 @@
                 mouse-wheel-progressive-speed nil)
   (fset 'yes-or-no-p 'y-or-n-p)
   (load custom-file t)
+
+  (unless (is-hd-display (display-width))
+    (set-face-attribute 'default nil
+                        :height 110))
 
   (menu-bar-mode -1)
   (tool-bar-mode -1)
