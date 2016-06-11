@@ -55,6 +55,8 @@
                 custom-file "~/.emacs.d/custom.el"
                 make-backup-files nil
                 dired-listing-switches "-alh"
+                initial-scratch-message nil
+                initial-major-mode 'text-mode
                 scroll-conservatively 101
                 mouse-wheel-scroll-amount '(1)
                 mouse-wheel-progressive-speed nil)
