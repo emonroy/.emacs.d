@@ -97,7 +97,7 @@
 
   (unless (is-hd-display (display-width))
     (set-face-attribute 'default nil
-                        :height 110))
+                        :height 100))
 
   (menu-bar-mode -1)
   (tool-bar-mode -1)
