@@ -285,6 +285,9 @@
   (yas-reload-all)
   (add-hook 'prog-mode-hook 'yas-minor-mode))
 
+(use-package dumb-jump
+  :ensure t)
+
 ;; Major modes -----------------------------------------------------------------
 
 (use-package emacs-lisp-mode-config
@@ -375,7 +378,8 @@
 
   (defun init-js2-mode ()
     (setq ac-sources (append ac-sources '(ac-source-words-in-all-buffer)))
-    (linum-mode))
+    (linum-mode)
+    (dumb-jump-mode))
 
   (add-hook 'js2-mode-hook 'init-js2-mode))
 
