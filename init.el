@@ -203,7 +203,9 @@
                 helm-M-x-fuzzy-match t)
 
   (set-face-attribute 'helm-selection nil
-                      :underline nil))
+                      :underline nil)
+
+  (helm-autoresize-mode))
 
 (use-package helm-ag
   :ensure t
