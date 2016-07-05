@@ -200,7 +200,8 @@
          ("C-c b" . helm-mini))
   :config
   (setq-default helm-split-window-in-side-p t
-                helm-M-x-fuzzy-match t)
+                helm-M-x-fuzzy-match t
+                helm-candidate-number-limit 10)
 
   (set-face-attribute 'helm-selection nil
                       :underline nil)
