@@ -54,7 +54,7 @@
 (defun current-hour ()
   (string-to-number (substring (current-time-string) 11 13)))
 
-(defun is-daylight-hour (hour)
+(defun daylight-hour-p (hour)
   (when (member hour (number-sequence 6 18))
     t))
 
@@ -64,7 +64,7 @@
   (setq-default solarized-distinct-fringe-background t
                 solarized-high-contrast-mode-line t)
 
-  (if (is-daylight-hour (current-hour))
+  (if (daylight-hour-p (current-hour))
       (load-theme 'solarized-light t)
     (load-theme 'solarized-dark t)))
 
@@ -75,8 +75,8 @@
       (x-display-pixel-width)
     0))
 
-(defun is-hd-display (width)
-  (when (>= width 1920)
+(defun hd-display-p (display-width)
+  (when (>= display-width 1920)
     t))
 
 (use-package emacs-config
@@ -95,7 +95,7 @@
   (fset 'yes-or-no-p 'y-or-n-p)
   (load custom-file t)
 
-  (unless (is-hd-display (display-width))
+  (unless (hd-display-p (display-width))
     (set-face-attribute 'default nil
                         :height 100))
 
