@@ -51,6 +51,27 @@
 
 ;; Themes ----------------------------------------------------------------------
 
+(use-package zenburn-theme
+  :ensure t
+  :defer t)
+
+(use-package solarized-theme
+  :ensure t
+  :defer t
+  :config
+  (setq-default solarized-distinct-fringe-background t
+                solarized-high-contrast-mode-line t))
+
+(use-package monokai-theme
+  :ensure t
+  :defer t
+  :config
+  (setq-default monokai-user-variable-pitch t))
+
+(use-package color-theme-sanityinc-tomorrow
+  :ensure t
+  :defer t)
+
 (defun current-hour ()
   (string-to-number (substring (current-time-string) 11 13)))
 
@@ -58,25 +79,16 @@
   (when (member hour (number-sequence 6 18))
     t))
 
-(use-package solarized-theme
-  :disabled t
-  :ensure t
+(use-package theme-config
+  :init
+  (provide 'theme-config)
   :config
-  (setq-default solarized-distinct-fringe-background t
-                solarized-high-contrast-mode-line t)
-  (setq day-theme 'solarized-light
-        night-theme 'solarized-dark)
+  (defvar day-theme 'monokai)
+  (defvar night-theme 'day-theme)
 
   (if (daylight-hour-p (current-hour))
       (load-theme day-theme t)
     (load-theme night-theme t)))
-
-(use-package monokai-theme
-  :ensure t
-  :config
-  (setq-default monokai-user-variable-pitch t)
-
-  (load-theme 'monokai t))
 
 ;; Basic configuration ---------------------------------------------------------
 
@@ -357,7 +369,7 @@
   :ensure t
   :mode "\\.html?\\'"
   :config
-  (setq-default web-mode-engines-alist '(("handlebars" . "\\.html?\\'"))
+  (setq-default web-mode-engines-alist '(("django" . "\\.html?\\'"))
                 web-mode-css-indent-offset 4
                 web-mode-markup-indent-offset 2
                 web-mode-code-indent-offset 4
