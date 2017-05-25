@@ -59,14 +59,24 @@
     t))
 
 (use-package solarized-theme
+  :disabled t
   :ensure t
   :config
   (setq-default solarized-distinct-fringe-background t
                 solarized-high-contrast-mode-line t)
+  (setq day-theme 'solarized-light
+        night-theme 'solarized-dark)
 
   (if (daylight-hour-p (current-hour))
-      (load-theme 'solarized-light t)
-    (load-theme 'solarized-dark t)))
+      (load-theme day-theme t)
+    (load-theme night-theme t)))
+
+(use-package monokai-theme
+  :ensure t
+  :config
+  (setq-default monokai-user-variable-pitch t)
+
+  (load-theme 'monokai t))
 
 ;; Basic configuration ---------------------------------------------------------
 
@@ -120,13 +130,6 @@
                 whitespace-action '(auto-cleanup))
 
   (global-whitespace-mode))
-
-(use-package yascroll
-  :ensure t
-  :config
-  (setq-default yascroll:delay-to-hide nil)
-
-  (global-yascroll-bar-mode))
 
 (use-package bind-key
   :ensure t
