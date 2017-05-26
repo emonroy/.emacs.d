@@ -84,7 +84,7 @@
   (provide 'theme-config)
   :config
   (defvar day-theme 'monokai)
-  (defvar night-theme 'day-theme)
+  (defvar night-theme day-theme)
 
   (if (daylight-hour-p (current-hour))
       (load-theme day-theme t)
