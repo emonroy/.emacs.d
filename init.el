@@ -107,7 +107,9 @@
   :config
   (setq-default inhibit-startup-screen t
                 custom-file "~/.emacs.d/custom.el"
-                make-backup-files nil
+                backup-directory-alist `((".*" . ,temporary-file-directory))
+                auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
+                create-lockfiles nil
                 dired-listing-switches "-alh"
                 initial-scratch-message nil
                 initial-major-mode 'text-mode
