@@ -93,8 +93,8 @@
 ;; Basic configuration ---------------------------------------------------------
 
 (defun display-width ()
-  (if window-system
-      (x-display-pixel-width)
+  (if (display-graphic-p)
+      (display-pixel-width)
     0))
 
 (defun hd-display-p (display-width)
@@ -119,9 +119,9 @@
   (fset 'yes-or-no-p 'y-or-n-p)
   (load custom-file t)
 
-  (unless (hd-display-p (display-width))
+  (when (hd-display-p (display-width))
     (set-face-attribute 'default nil
-                        :height 100))
+                        :height 140))
 
   (menu-bar-mode -1)
   (tool-bar-mode -1)
