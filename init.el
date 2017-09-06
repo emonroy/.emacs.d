@@ -101,6 +101,10 @@
   (when (>= display-width 1920)
     t))
 
+(defun available-font-p (font)
+  (when (find-font (font-spec :name font))
+    t))
+
 (use-package emacs-config
   :init
   (provide 'emacs-config)
@@ -119,9 +123,18 @@
   (fset 'yes-or-no-p 'y-or-n-p)
   (load custom-file t)
 
+  (defvar default-face-font "fira mono")
+  (unless (available-font-p default-face-font)
+    (setq default-face-font (face-attribute 'default :font)))
+
+  (defvar default-face-height 120)
+  (defvar default-face-height-hd 160)
   (when (hd-display-p (display-width))
-    (set-face-attribute 'default nil
-                        :height 140))
+    (setq default-face-height default-face-height-hd))
+
+  (set-face-attribute 'default nil
+                      :font default-face-font
+                      :height default-face-height)
 
   (menu-bar-mode -1)
   (tool-bar-mode -1)
