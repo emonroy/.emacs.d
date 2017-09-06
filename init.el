@@ -45,34 +45,34 @@
   :ensure t
   :defer t)
 
-(defun emonroy--available-font-p (font)
-  (when (find-font (font-spec :name font))
-    t))
-
-(defun emonroy--display-width ()
-  (if (display-graphic-p)
-      (display-pixel-width)
-    0))
-
-(defun emonroy--hd-display-p ()
-  (when (>= (emonroy--display-width) 1920)
-    t))
-
-(defun emonroy--2k-display-p ()
-  (when (>= (emonroy--display-width) 2560)
-    t))
-
-(defun emonroy--current-hour ()
-  (string-to-number (substring (current-time-string) 11 13)))
-
-(defun emonroy--daylight-hour-p ()
-  (when (member (emonroy--current-hour) (number-sequence 6 18))
-    t))
-
 (use-package theme-config
   :init
   (provide 'theme-config)
   :config
+  (defun emonroy--available-font-p (font)
+    (when (find-font (font-spec :name font))
+      t))
+
+  (defun emonroy--display-width ()
+    (if (display-graphic-p)
+        (display-pixel-width)
+      0))
+
+  (defun emonroy--hd-display-p ()
+    (when (>= (emonroy--display-width) 1920)
+      t))
+
+  (defun emonroy--2k-display-p ()
+    (when (>= (emonroy--display-width) 2560)
+      t))
+
+  (defun emonroy--current-hour ()
+    (string-to-number (substring (current-time-string) 11 13)))
+
+  (defun emonroy--daylight-hour-p ()
+    (when (member (emonroy--current-hour) (number-sequence 6 18))
+      t))
+
   (let ((frame-font "fira mono")
         (default-face-height 100)
         (day-theme 'monokai)
