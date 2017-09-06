@@ -1,31 +1,6 @@
-;; .emacs.d by E. Monroy
-;;
-;; Dependencies ----------------------------------------------------------------
-;; ag
-;;
-;; Custom bindings -------------------------------------------------------------
-;; undo                      -- C-z       -- undo
-;; windmove                  -- M-<up>    -- move to frame above
-;;                           -- M-<right> -- move to frame on the right
-;;                           -- M-<down>  -- move to frame below
-;;                           -- M-<left>  -- move to frame on the left
-;; expand-region             -- C-+       -- expand region
-;;                           -- C--       -- decrease region (after expanding)
-;; ace-jump-mode             -- C-c SPC   -- enables ace jump mode
-;; default-text-scale        -- C-c +     -- increases text size
-;;                           -- C-c -     -- decreases text size
-;; smex                      -- M-x       -- smex M-x command
-;; helm-M-x                  -- C-c x     -- helm M-x command
-;; helm-mini                 -- C-c b     -- helm buffer selection
-;; helm-do-ag                -- C-c a     -- search in directory
-;; helm-do-ag-project-root   -- C-c r     -- search in project root
-;; helm-swoop                -- C-c s     -- search in buffer
-;; helm-multi-swoop-all      -- C-c S     -- search in all buffers
-;; helm-projectile-find-file -- C-c f     -- search file in project
-;; auto-complete             -- <tab>     -- auto complete
-;; yas-expand                -- C-<tab>   -- expand snippet
+;;;; init.el by E. Monroy
 
-;; Package management ----------------------------------------------------------
+;;; Package management ---------------------------------------------------------
 
 (require 'package)
 (add-to-list 'package-archives
@@ -49,7 +24,7 @@
   :config
   (setq-default paradox-github-token -1))
 
-;; Themes ----------------------------------------------------------------------
+;;; Themes ---------------------------------------------------------------------
 
 (use-package zenburn-theme
   :ensure t
@@ -90,7 +65,7 @@
       (load-theme day-theme t)
     (load-theme night-theme t)))
 
-;; Basic configuration ---------------------------------------------------------
+;;; Basic configuration --------------------------------------------------------
 
 (defun display-width ()
   (if (display-graphic-p)
@@ -198,7 +173,7 @@
   :config
   (smex-initialize))
 
-;; Ido -------------------------------------------------------------------------
+;;; Ido ------------------------------------------------------------------------
 
 (use-package flx-ido
   :ensure t
@@ -222,7 +197,7 @@
 
   (ido-ubiquitous-mode))
 
-;; Helm   ----------------------------------------------------------------------
+;;; Helm   ---------------------------------------------------------------------
 
 (use-package helm
   :ensure t
@@ -264,7 +239,7 @@
   :ensure t
   :bind (("C-c f" . helm-projectile-find-file)))
 
-;; Minor modes -----------------------------------------------------------------
+;;; Minor modes ----------------------------------------------------------------
 
 (use-package rainbow-mode
   :ensure t
@@ -318,7 +293,7 @@
 (use-package dumb-jump
   :ensure t)
 
-;; Major modes -----------------------------------------------------------------
+;;; Major modes ----------------------------------------------------------------
 
 (use-package emacs-lisp-mode-config
   :init
