@@ -191,11 +191,9 @@
 
   (ido-vertical-mode))
 
-(use-package ido-ubiquitous
+(use-package ido-completing-read+
   :ensure t
   :config
-  (setq-default ido-everywhere t)
-
   (ido-ubiquitous-mode))
 
 ;;; Helm   ---------------------------------------------------------------------
