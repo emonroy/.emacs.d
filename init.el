@@ -45,26 +45,6 @@
   :ensure t
   :defer t)
 
-(defun current-hour ()
-  (string-to-number (substring (current-time-string) 11 13)))
-
-(defun daylight-hour-p (hour)
-  (when (member hour (number-sequence 6 18))
-    t))
-
-(use-package theme-config
-  :init
-  (provide 'theme-config)
-  :config
-  (defvar day-theme 'monokai)
-  (defvar night-theme day-theme)
-
-  (if (daylight-hour-p (current-hour))
-      (load-theme day-theme t)
-    (load-theme night-theme t)))
-
-;;; Basic configuration --------------------------------------------------------
-
 (defun available-font-p (font)
   (when (find-font (font-spec :name font))
     t))
@@ -81,6 +61,38 @@
 (defun 2k-display-p ()
   (when (>= (display-width) 2560)
     t))
+
+(defun current-hour ()
+  (string-to-number (substring (current-time-string) 11 13)))
+
+(defun daylight-hour-p ()
+  (when (member (current-hour) (number-sequence 6 18))
+    t))
+
+(use-package theme-config
+  :init
+  (provide 'theme-config)
+  :config
+  (let ((frame-font "fira mono")
+        (default-face-height 100)
+        (day-theme 'monokai)
+        (night-theme 'solarized-dark))
+    (when (available-font-p frame-font)
+      (set-frame-font frame-font))
+
+    (cond
+     ((2k-display-p)
+      (setq default-face-height 140))
+     ((hd-display-p)
+      (setq default-face-height 120)))
+    (set-face-attribute 'default nil
+                        :height default-face-height)
+
+    (if (daylight-hour-p)
+        (load-theme day-theme t)
+      (load-theme night-theme t))))
+
+;;; Basic configuration --------------------------------------------------------
 
 (use-package emacs-config
   :init
@@ -99,18 +111,6 @@
                 mouse-wheel-progressive-speed nil)
   (fset 'yes-or-no-p 'y-or-n-p)
   (load custom-file t)
-
-  (let ((frame-font "fira mono")
-        (default-face-height 100))
-    (when (available-font-p frame-font)
-      (set-frame-font frame-font))
-    (cond
-     ((2k-display-p)
-      (setq default-face-height 140))
-     ((hd-display-p)
-      (setq default-face-height 120)))
-    (set-face-attribute 'default nil
-                        :height default-face-height))
 
   (menu-bar-mode -1)
   (tool-bar-mode -1)
