@@ -67,17 +67,21 @@
 
 ;;; Basic configuration --------------------------------------------------------
 
+(defun available-font-p (font)
+  (when (find-font (font-spec :name font))
+    t))
+
 (defun display-width ()
   (if (display-graphic-p)
       (display-pixel-width)
     0))
 
-(defun hd-display-p (display-width)
-  (when (>= display-width 1920)
+(defun hd-display-p ()
+  (when (>= (display-width) 1920)
     t))
 
-(defun available-font-p (font)
-  (when (find-font (font-spec :name font))
+(defun 2k-display-p ()
+  (when (>= (display-width) 2560)
     t))
 
 (use-package emacs-config
@@ -98,18 +102,17 @@
   (fset 'yes-or-no-p 'y-or-n-p)
   (load custom-file t)
 
-  (defvar default-face-font "fira mono")
-  (unless (available-font-p default-face-font)
-    (setq default-face-font (face-attribute 'default :font)))
-
-  (defvar default-face-height 100)
-  (defvar default-face-height-hd 120)
-  (when (hd-display-p (display-width))
-    (setq default-face-height default-face-height-hd))
-
-  (set-face-attribute 'default nil
-                      :font default-face-font
-                      :height default-face-height)
+  (let ((frame-font "fira mono")
+        (default-face-height 100))
+    (when (available-font-p frame-font)
+      (set-frame-font frame-font))
+    (cond
+     ((2k-display-p)
+      (setq default-face-height 140))
+     ((hd-display-p)
+      (setq default-face-height 120)))
+    (set-face-attribute 'default nil
+                        :height default-face-height))
 
   (menu-bar-mode -1)
   (tool-bar-mode -1)
