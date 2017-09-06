@@ -127,8 +127,8 @@
   (unless (available-font-p default-face-font)
     (setq default-face-font (face-attribute 'default :font)))
 
-  (defvar default-face-height 120)
-  (defvar default-face-height-hd 160)
+  (defvar default-face-height 100)
+  (defvar default-face-height-hd 120)
   (when (hd-display-p (display-width))
     (setq default-face-height default-face-height-hd))
 
