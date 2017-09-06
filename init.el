@@ -45,28 +45,28 @@
   :ensure t
   :defer t)
 
-(defun available-font-p (font)
+(defun emonroy--available-font-p (font)
   (when (find-font (font-spec :name font))
     t))
 
-(defun display-width ()
+(defun emonroy--display-width ()
   (if (display-graphic-p)
       (display-pixel-width)
     0))
 
-(defun hd-display-p ()
-  (when (>= (display-width) 1920)
+(defun emonroy--hd-display-p ()
+  (when (>= (emonroy--display-width) 1920)
     t))
 
-(defun 2k-display-p ()
-  (when (>= (display-width) 2560)
+(defun emonroy--2k-display-p ()
+  (when (>= (emonroy--display-width) 2560)
     t))
 
-(defun current-hour ()
+(defun emonroy--current-hour ()
   (string-to-number (substring (current-time-string) 11 13)))
 
-(defun daylight-hour-p ()
-  (when (member (current-hour) (number-sequence 6 18))
+(defun emonroy--daylight-hour-p ()
+  (when (member (emonroy--current-hour) (number-sequence 6 18))
     t))
 
 (use-package theme-config
@@ -77,18 +77,18 @@
         (default-face-height 100)
         (day-theme 'monokai)
         (night-theme 'solarized-dark))
-    (when (available-font-p frame-font)
+    (when (emonroy--available-font-p frame-font)
       (set-frame-font frame-font))
 
     (cond
-     ((2k-display-p)
+     ((emonroy--2k-display-p)
       (setq default-face-height 140))
-     ((hd-display-p)
+     ((emonroy--hd-display-p)
       (setq default-face-height 120)))
     (set-face-attribute 'default nil
                         :height default-face-height)
 
-    (if (daylight-hour-p)
+    (if (emonroy--daylight-hour-p)
         (load-theme day-theme t)
       (load-theme night-theme t))))
 
@@ -223,13 +223,13 @@
 
 (use-package helm-swoop
   :ensure t
-  :bind (("C-c s" . helm-swoop-multiline-4)
+  :bind (("C-c s" . emonroy--helm-swoop-multiline-4)
          ("C-c S" . helm-multi-swoop-all))
   :config
   (setq-default helm-swoop-move-to-line-cycle nil
                 helm-swoop-speed-or-color nil)
 
-  (defun helm-swoop-multiline-4 ()
+  (defun emonroy--helm-swoop-multiline-4 ()
     (interactive)
     (setq current-prefix-arg 4)
     (helm-swoop)))
@@ -298,7 +298,7 @@
   :init
   (provide 'emacs-lisp-mode-config)
   :config
-  (defun init-emacs-lisp-mode ()
+  (defun emonroy--emacs-lisp-mode-hook ()
     (setq ac-sources (append ac-sources '(ac-source-functions
                                           ac-source-variables
                                           ac-source-yasnippet
@@ -306,7 +306,7 @@
                                           ac-source-features)))
     (rainbow-mode))
 
-  (add-hook 'emacs-lisp-mode-hook 'init-emacs-lisp-mode))
+  (add-hook 'emacs-lisp-mode-hook 'emonroy--emacs-lisp-mode-hook))
 
 (use-package dummy-h-mode
   :ensure t
@@ -320,10 +320,10 @@
   :config
   (setq-default c-default-style "k&r"
                 c-basic-offset 4)
-  (defun init-c-mode ()
+  (defun emonroy--c-mode-hook ()
     (linum-mode))
 
-  (add-hook 'c-mode-hook 'init-c-mode))
+  (add-hook 'c-mode-hook 'emonroy--c-mode-hook))
 
 (use-package c++-mode-config
   :init
@@ -344,12 +344,12 @@
   :config
   (add-to-list 'rainbow-html-colors-major-mode-list 'less-css-mode)
 
-  (defun init-less-css-mode ()
+  (defun emonroy--less-css-mode-hook ()
     (setq ac-sources (append ac-sources '(ac-source-css-property
                                           ac-source-words-in-all-buffer)))
     (rainbow-mode))
 
-  (add-hook 'less-css-mode-hook 'init-less-css-mode))
+  (add-hook 'less-css-mode-hook 'emonroy--less-css-mode-hook))
 
 (use-package web-mode
   :ensure t
@@ -366,10 +366,10 @@
                 web-mode-enable-auto-pairing nil
                 web-mode-enable-current-element-highlight t)
 
-  (defun init-web-mode()
+  (defun emonroy--web-mode-hook()
     (setq ac-sources (append ac-sources '(ac-source-words-in-all-buffer))))
 
-  (add-hook 'web-mode-hook 'init-web-mode))
+  (add-hook 'web-mode-hook 'emonroy--web-mode-hook))
 
 (use-package js2-mode
   :ensure t
@@ -380,12 +380,12 @@
                 js2-include-node-externs t
                 js2-strict-trailing-comma-warning nil)
 
-  (defun init-js2-mode ()
+  (defun emonroy--js2-mode-hook ()
     (setq ac-sources (append ac-sources '(ac-source-words-in-all-buffer)))
     (linum-mode)
     (dumb-jump-mode))
 
-  (add-hook 'js2-mode-hook 'init-js2-mode))
+  (add-hook 'js2-mode-hook 'emonroy--js2-mode-hook))
 
 (use-package lua-mode
   :ensure t
