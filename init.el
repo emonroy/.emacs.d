@@ -3,11 +3,9 @@
 ;;; Package management ---------------------------------------------------------
 
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/"))
-(when (< emacs-major-version 24)
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (setq package-enable-at-startup nil)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
