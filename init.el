@@ -252,11 +252,8 @@
   :bind (("C-c s" . helm-swoop-multiline-4)
          ("C-c S" . helm-multi-swoop-all))
   :config
-  (defun helm-swoop-pre-input-function-empty ()
-    "")
   (setq-default helm-swoop-move-to-line-cycle nil
-                helm-swoop-split-with-multiple-windows t
-                helm-swoop-pre-input-function 'helm-swoop-pre-input-function-empty)
+                helm-swoop-speed-or-color nil)
 
   (defun helm-swoop-multiline-4 ()
     (interactive)
