@@ -217,6 +217,8 @@ Returns the display width in pixels."
 (use-package projectile
   :ensure t
   :diminish projectile-mode
+  :init
+  (setq-default projectile-keymap-prefix (kbd "C-c C-p"))
   :config
   (setq-default projectile-enable-caching t
                 projectile-completion-system 'helm
