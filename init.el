@@ -262,7 +262,8 @@ Returns the display width in pixels."
                                           ac-source-yasnippet
                                           ac-source-symbols
                                           ac-source-features)))
-    (rainbow-mode))
+    (rainbow-mode)
+    (linum-mode))
   (add-hook 'emacs-lisp-mode-hook 'emonroy--emacs-lisp-mode-hook))
 
 (use-package dummy-h-mode
