@@ -1,4 +1,4 @@
-;;; init.el --- Edu's Emacs configuration with use-package
+;;; init.el --- Edu's Emacs configuration with use-package -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; Author: E. Monroy
@@ -36,9 +36,9 @@
 
 ;;; Emacs configuration --------------------------------------------------------
 
-(use-package emacs-config
+(use-package emonroy--emacs-config
   :init
-  (provide 'emacs-config)
+  (provide 'emonroy--emacs-config)
   :bind (("C-z" . undo)
          ("M-SPC" . cycle-spacing)
          ("M-<up>" . windmove-up)
@@ -57,10 +57,8 @@
                 scroll-conservatively 101
                 mouse-wheel-scroll-amount '(1)
                 mouse-wheel-progressive-speed nil)
-
   (load custom-file t)
   (fset 'yes-or-no-p 'y-or-n-p)
-
   (menu-bar-mode -1)
   (tool-bar-mode -1)
   (scroll-bar-mode -1)
@@ -95,7 +93,6 @@
   :ensure t
   :config
   (setq-default monokai-user-variable-pitch t)
-
   (load-theme 'monokai t))
 
 (defun emonroy--available-font-p (font)
@@ -111,19 +108,17 @@ Returns the display width in pixels."
       (display-pixel-width)
     0))
 
-(use-package font-config
+(use-package emonroy--font-config
   :init
-  (provide 'font-config)
+  (provide 'emonroy--font-config)
   :config
   (when (emonroy--available-font-p emonroy--frame-font)
     (set-frame-font emonroy--frame-font))
-
   (let ((default-face-height emonroy--default-face-height))
     (cond ((>= (emonroy--display-width) 2560)
            (setq default-face-height emonroy--default-face-height-2k))
           ((>= (emonroy--display-width) 1920)
            (setq default-face-height emonroy--default-face-height-hd)))
-
     (set-face-attribute 'default nil
                         :height default-face-height)))
 
@@ -134,14 +129,12 @@ Returns the display width in pixels."
   :config
   (setq-default ido-enable-dot-prefix t
                 ido-enable-flex-matching t)
-
   (flx-ido-mode))
 
 (use-package ido-vertical-mode
   :ensure t
   :config
   (setq-default ido-vertical-define-keys 'C-n-C-p-up-down-left-right)
-
   (ido-vertical-mode))
 
 (use-package ido-completing-read+
@@ -159,10 +152,8 @@ Returns the display width in pixels."
   (setq-default helm-split-window-in-side-p t
                 helm-M-x-fuzzy-match t
                 helm-candidate-number-limit 10)
-
   (set-face-attribute 'helm-selection nil
                       :underline nil)
-
   (helm-autoresize-mode))
 
 (use-package helm-ag
@@ -181,7 +172,6 @@ Returns the display width in pixels."
   :config
   (setq-default helm-swoop-move-to-line-cycle nil
                 helm-swoop-speed-or-color nil)
-
   (defun emonroy--helm-swoop-multiline-4 ()
     (interactive)
     (setq current-prefix-arg 4)
@@ -199,7 +189,6 @@ Returns the display width in pixels."
   (setq-default indent-tabs-mode nil
                 whitespace-style '(empty trailing tab-mark)
                 whitespace-action '(auto-cleanup))
-
   (global-whitespace-mode))
 
 (use-package rainbow-mode
@@ -215,7 +204,6 @@ Returns the display width in pixels."
   (set-face-attribute 'anzu-mode-line nil
                       :inherit 'mode-line
                       :foreground nil)
-
   (global-anzu-mode))
 
 (use-package ace-jump-mode
@@ -223,7 +211,8 @@ Returns the display width in pixels."
   :bind (("C-c SPC" . ace-jump-mode)))
 
 (use-package dumb-jump
-  :ensure t)
+  :ensure t
+  :bind ("C-c g" . dumb-jump-go))
 
 (use-package projectile
   :ensure t
@@ -232,7 +221,6 @@ Returns the display width in pixels."
   (setq-default projectile-enable-caching t
                 projectile-completion-system 'helm
                 projectile-indexing-method 'alien)
-
   (add-hook 'projectile-mode-hook 'helm-projectile-on)
   (add-hook 'prog-mode-hook 'projectile-mode))
 
@@ -250,10 +238,8 @@ Returns the display width in pixels."
   (setq-default ac-use-menu-map t
                 ac-sources '(ac-source-words-in-buffer
                              ac-source-words-in-same-mode-buffers))
-
   (ac-set-trigger-key "TAB")
   (ac-set-trigger-key "<tab>")
-
   (ac-linum-workaround)
   (add-hook 'prog-mode-hook 'auto-complete-mode))
 
@@ -262,19 +248,17 @@ Returns the display width in pixels."
   :diminish yas-minor-mode
   :config
   (setq-default yas-also-auto-indent-first-line t)
-
   (define-key yas-minor-mode-map (kbd "TAB") nil)
   (define-key yas-minor-mode-map (kbd "<tab>") nil)
   (define-key yas-minor-mode-map (kbd "C-<tab>") 'yas-expand)
-
   (yas-reload-all)
   (add-hook 'prog-mode-hook 'yas-minor-mode))
 
 ;;; Major modes ----------------------------------------------------------------
 
-(use-package emacs-lisp-mode-config
+(use-package emonroy--emacs-lisp-mode
   :init
-  (provide 'emacs-lisp-mode-config)
+  (provide 'emonroy--emacs-lisp-mode)
   :config
   (defun emonroy--emacs-lisp-mode-hook ()
     (setq ac-sources (append ac-sources '(ac-source-functions
@@ -282,9 +266,7 @@ Returns the display width in pixels."
                                           ac-source-yasnippet
                                           ac-source-symbols
                                           ac-source-features)))
-
     (rainbow-mode))
-
   (add-hook 'emacs-lisp-mode-hook 'emonroy--emacs-lisp-mode-hook))
 
 (use-package dummy-h-mode
@@ -293,27 +275,24 @@ Returns the display width in pixels."
   :config
   (setq-default dummy-h-mode-default-major-mode 'c++-mode))
 
-(use-package c-mode-config
+(use-package emonroy--c-mode
   :init
-  (provide 'c-mode-config)
+  (provide 'emonroy--c-mode)
   :config
   (setq-default c-default-style "k&r"
                 c-basic-offset 4)
   (defun emonroy--c-mode-hook ()
     (linum-mode))
-
   (add-hook 'c-mode-hook 'emonroy--c-mode-hook))
 
-(use-package c++-mode-config
+(use-package emonroy--c++-mode
   :init
-  (provide 'c++-mode-config)
+  (provide 'emonroy--c++-mode)
   :config
   (c-set-offset 'inline-open 0)
-
   (defun init-c++-mode ()
     (setq flycheck-gcc-language-standard "c++11")
     (linum-mode))
-
   (add-hook 'c++-mode-hook 'init-c++-mode))
 
 (use-package less-css-mode
@@ -322,13 +301,10 @@ Returns the display width in pixels."
          "\\.css\\'")
   :config
   (add-to-list 'rainbow-html-colors-major-mode-list 'less-css-mode)
-
   (defun emonroy--less-css-mode-hook ()
     (setq ac-sources (append ac-sources '(ac-source-css-property
                                           ac-source-words-in-all-buffer)))
-
     (rainbow-mode))
-
   (add-hook 'less-css-mode-hook 'emonroy--less-css-mode-hook))
 
 (use-package web-mode
@@ -345,10 +321,8 @@ Returns the display width in pixels."
                 web-mode-enable-auto-quoting nil
                 web-mode-enable-auto-pairing nil
                 web-mode-enable-current-element-highlight t)
-
   (defun emonroy--web-mode-hook()
     (setq ac-sources (append ac-sources '(ac-source-words-in-all-buffer))))
-
   (add-hook 'web-mode-hook 'emonroy--web-mode-hook))
 
 (use-package js2-mode
@@ -359,12 +333,9 @@ Returns the display width in pixels."
                                      "_")
                 js2-include-node-externs t
                 js2-strict-trailing-comma-warning nil)
-
   (defun emonroy--js2-mode-hook ()
     (setq ac-sources (append ac-sources '(ac-source-words-in-all-buffer)))
-    (linum-mode)
-    (dumb-jump-mode))
-
+    (linum-mode))
   (add-hook 'js2-mode-hook 'emonroy--js2-mode-hook))
 
 (use-package lua-mode
@@ -372,7 +343,6 @@ Returns the display width in pixels."
   :mode "\\.lua\\'"
   :config
   (setq-default lua-indent-level 2))
-
 
 (provide 'init)
 ;;; init.el ends here

@@ -17,6 +17,7 @@ My modest Emacs configuration with `use-package`.
 | `cycle-spacing`             | `M-SPC`     | delete extra whitespace    |
 | `default-text-scale`        | `C-c` `+`   | increase text size         |
 |                             | `C-c` `-`   | decrease text size         |
+| `dumb-jump-go`              | `C-c` `g`   | jump to definition         |
 | `expand-region`             | `C-+`       | expand region              |
 | `helm-M-x`                  | `C-c` `x`   | helm `M-x` command         |
 | `helm-do-ag`                | `C-c` `a`   | search in directory        |
