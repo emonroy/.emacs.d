@@ -93,6 +93,12 @@
   (setq-default monokai-use-variable-pitch t)
   (load-theme 'monokai t))
 
+(use-package auto-dim-other-buffers
+  :ensure t
+  :config
+  (set-face-background 'auto-dim-other-buffers-face "#1b1c17")
+  (auto-dim-other-buffers-mode))
+
 (defun emonroy--available-font-p (font)
   "Check font availability.
 Returns t when FONT is available."
@@ -167,7 +173,9 @@ Returns the display width in pixels."
          ("C-c S" . helm-multi-swoop-all))
   :config
   (setq-default helm-swoop-move-to-line-cycle nil
-                helm-swoop-speed-or-color nil)
+                helm-swoop-speed-or-color nil
+                helm-swoop-split-with-multiple-windows t
+                helm-swoop-split-direction 'split-window-vertically)
   (defun emonroy--helm-swoop-multiline-4 ()
     (interactive)
     (setq current-prefix-arg 4)
