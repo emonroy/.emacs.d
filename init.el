@@ -118,13 +118,11 @@ Returns the display width in pixels."
   (when (emonroy--available-font-p emonroy--frame-font)
     (set-frame-font emonroy--frame-font))
 
-  (let ((default-face-height))
-    (cond ((>= (emonroy--display-width) 1920)
+  (let ((default-face-height emonroy--default-face-height))
+    (cond ((>= (emonroy--display-width) 2560)
            (setq default-face-height emonroy--default-face-height-2k))
-          ((>= (emonroy--display-width) 2560)
-           (setq default-face-height emonroy--default-face-height-hd)
-           t
-           (setq default-face-height emonroy--default-face-height)))
+          ((>= (emonroy--display-width) 1920)
+           (setq default-face-height emonroy--default-face-height-hd)))
 
     (set-face-attribute 'default nil
                         :height default-face-height)))
