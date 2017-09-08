@@ -90,7 +90,7 @@
 (use-package monokai-theme
   :ensure t
   :config
-  (setq-default monokai-user-variable-pitch t)
+  (setq-default monokai-use-variable-pitch t)
   (load-theme 'monokai t))
 
 (defun emonroy--available-font-p (font)
