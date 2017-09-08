@@ -37,15 +37,13 @@
 ;;; Emacs configuration --------------------------------------------------------
 
 (use-package emonroy--emacs-config
-  :init
-  (provide 'emonroy--emacs-config)
   :bind (("C-z" . undo)
          ("M-SPC" . cycle-spacing)
          ("M-<up>" . windmove-up)
          ("M-<right>" . windmove-right)
          ("M-<down>" . windmove-down)
          ("M-<left>" . windmove-left))
-  :config
+  :init
   (setq-default inhibit-startup-screen t
                 initial-scratch-message nil
                 initial-major-mode 'text-mode
@@ -110,8 +108,6 @@ Returns the display width in pixels."
 
 (use-package emonroy--font-config
   :init
-  (provide 'emonroy--font-config)
-  :config
   (when (emonroy--available-font-p emonroy--frame-font)
     (set-frame-font emonroy--frame-font))
   (let ((default-face-height emonroy--default-face-height))
@@ -260,8 +256,6 @@ Returns the display width in pixels."
 
 (use-package emonroy--emacs-lisp-mode
   :init
-  (provide 'emonroy--emacs-lisp-mode)
-  :config
   (defun emonroy--emacs-lisp-mode-hook ()
     (setq ac-sources (append ac-sources '(ac-source-functions
                                           ac-source-variables
@@ -279,8 +273,6 @@ Returns the display width in pixels."
 
 (use-package emonroy--c-mode
   :init
-  (provide 'emonroy--c-mode)
-  :config
   (setq-default c-default-style "k&r"
                 c-basic-offset 4)
   (defun emonroy--c-mode-hook ()
@@ -289,8 +281,6 @@ Returns the display width in pixels."
 
 (use-package emonroy--c++-mode
   :init
-  (provide 'emonroy--c++-mode)
-  :config
   (c-set-offset 'inline-open 0)
   (defun init-c++-mode ()
     (setq flycheck-gcc-language-standard "c++11")
