@@ -1,4 +1,16 @@
-;;;; init.el by E. Monroy
+;;; init.el --- Edu's Emacs configuration with use-package
+
+;;; Commentary:
+;; Author: E. Monroy
+;; URL: https://github.com/emonroy/.emacs.d
+
+;;; Code:
+;;; Configuration constants ----------------------------------------------------
+
+(defconst emonroy--frame-font "fira mono")
+(defconst emonroy--default-face-height 100)
+(defconst emonroy--default-face-height-hd 120)
+(defconst emonroy--default-face-height-2k 140)
 
 ;;; Package management ---------------------------------------------------------
 
@@ -22,92 +34,26 @@
   :config
   (setq-default paradox-github-token -1))
 
-;;; Themes ---------------------------------------------------------------------
-
-(use-package solarized-theme
-  :ensure t
-  :defer t
-  :config
-  (setq-default solarized-distinct-fringe-background t
-                solarized-high-contrast-mode-line t))
-
-(use-package monokai-theme
-  :ensure t
-  :defer t
-  :config
-  (setq-default monokai-user-variable-pitch t))
-
-(use-package color-theme-sanityinc-tomorrow
-  :ensure t
-  :defer t)
-
-(use-package theme-config
-  :init
-  (provide 'theme-config)
-  :config
-  (let ((frame-font "fira mono")
-        (default-face-height 100)
-        (day-theme 'monokai)
-        (night-theme 'solarized-dark))
-
-    (defun emonroy--available-font-p (font)
-      (when (find-font (font-spec :name font))
-        t))
-
-    (when (emonroy--available-font-p frame-font)
-      (set-frame-font frame-font))
-
-    (defun emonroy--display-width ()
-      (if (display-graphic-p)
-          (display-pixel-width)
-        0))
-
-    (defun emonroy--hd-display-p ()
-      (when (>= (emonroy--display-width) 1920)
-        t))
-
-    (defun emonroy--2k-display-p ()
-      (when (>= (emonroy--display-width) 2560)
-        t))
-
-    (cond ((emonroy--2k-display-p)
-           (setq default-face-height 140))
-          ((emonroy--hd-display-p)
-           (setq default-face-height 120)))
-
-    (set-face-attribute 'default nil
-                        :height default-face-height)
-
-    (defun emonroy--current-hour ()
-      (string-to-number (substring (current-time-string) 11 13)))
-
-    (defun emonroy--daylight-hour-p ()
-      (when (member (emonroy--current-hour) (number-sequence 6 18))
-        t))
-
-    (if (emonroy--daylight-hour-p)
-        (load-theme day-theme t)
-      (load-theme night-theme t))))
-
-;;; Basic configuration --------------------------------------------------------
+;;; Emacs configuration --------------------------------------------------------
 
 (use-package emacs-config
   :init
   (provide 'emacs-config)
   :config
   (setq-default inhibit-startup-screen t
+                initial-scratch-message nil
+                initial-major-mode 'text-mode
                 custom-file "~/.emacs.d/custom.el"
                 backup-directory-alist `((".*" . ,temporary-file-directory))
                 auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
                 create-lockfiles nil
                 dired-listing-switches "-alh"
-                initial-scratch-message nil
-                initial-major-mode 'text-mode
                 scroll-conservatively 101
                 mouse-wheel-scroll-amount '(1)
                 mouse-wheel-progressive-speed nil)
-  (fset 'yes-or-no-p 'y-or-n-p)
+
   (load custom-file t)
+  (fset 'yes-or-no-p 'y-or-n-p)
 
   (menu-bar-mode -1)
   (tool-bar-mode -1)
@@ -122,14 +68,14 @@
   (ido-mode)
   (global-auto-revert-mode))
 
-(use-package whitespace
-  :diminish global-whitespace-mode
-  :config
-  (setq-default indent-tabs-mode nil
-                whitespace-style '(empty trailing tab-mark)
-                whitespace-action '(auto-cleanup))
+(use-package expand-region
+  :ensure t
+  :bind (("C-+" . er/expand-region)))
 
-  (global-whitespace-mode))
+(use-package default-text-scale
+  :ensure t
+  :bind (("C-c +" . default-text-scale-increase)
+         ("C-c -" . default-text-scale-decrease)))
 
 (use-package bind-key
   :ensure t
@@ -140,36 +86,51 @@
          ("M-<down>" . windmove-down)
          ("M-<left>" . windmove-left)))
 
-(use-package anzu
-  :ensure t
-  :demand t
-  :diminish anzu-mode
-  :bind (("C-c %" . anzu-query-replace))
-  :config
-  (set-face-attribute 'anzu-mode-line nil
-                      :inherit 'mode-line
-                      :foreground nil)
-
-  (global-anzu-mode))
-
-(use-package expand-region
-  :ensure t
-  :bind (("C-+" . er/expand-region)))
-
-(use-package default-text-scale
-  :ensure t
-  :bind (("C-c +" . default-text-scale-increase)
-         ("C-c -" . default-text-scale-decrease)))
-
-(use-package ace-jump-mode
-  :ensure t
-  :bind (("C-c SPC" . ace-jump-mode)))
-
 (use-package smex
   :ensure t
   :bind (("M-x" . smex))
   :config
   (smex-initialize))
+
+;;; Theme ----------------------------------------------------------------------
+
+(use-package monokai-theme
+  :ensure t
+  :config
+  (setq-default monokai-user-variable-pitch t)
+
+  (load-theme 'monokai t))
+
+(defun emonroy--available-font-p (font)
+  "Check font availability.
+Returns t when FONT is available."
+  (when (find-font (font-spec :name font))
+    t))
+
+(defun emonroy--display-width ()
+  "Get display width.
+Returns the display width in pixels."
+  (if (display-graphic-p)
+      (display-pixel-width)
+    0))
+
+(use-package font-config
+  :init
+  (provide 'font-config)
+  :config
+  (when (emonroy--available-font-p emonroy--frame-font)
+    (set-frame-font emonroy--frame-font))
+
+  (let ((default-face-height))
+    (cond ((>= (emonroy--display-width) 1920)
+           (setq default-face-height emonroy--default-face-height-2k))
+          ((>= (emonroy--display-width) 2560)
+           (setq default-face-height emonroy--default-face-height-hd)
+           t
+           (setq default-face-height emonroy--default-face-height)))
+
+    (set-face-attribute 'default nil
+                        :height default-face-height)))
 
 ;;; Ido ------------------------------------------------------------------------
 
@@ -237,9 +198,37 @@
 
 ;;; Minor modes ----------------------------------------------------------------
 
+(use-package whitespace
+  :diminish global-whitespace-mode
+  :config
+  (setq-default indent-tabs-mode nil
+                whitespace-style '(empty trailing tab-mark)
+                whitespace-action '(auto-cleanup))
+
+  (global-whitespace-mode))
+
 (use-package rainbow-mode
   :ensure t
   :diminish rainbow-mode)
+
+(use-package anzu
+  :ensure t
+  :demand t
+  :diminish anzu-mode
+  :bind (("C-c %" . anzu-query-replace))
+  :config
+  (set-face-attribute 'anzu-mode-line nil
+                      :inherit 'mode-line
+                      :foreground nil)
+
+  (global-anzu-mode))
+
+(use-package ace-jump-mode
+  :ensure t
+  :bind (("C-c SPC" . ace-jump-mode)))
+
+(use-package dumb-jump
+  :ensure t)
 
 (use-package projectile
   :ensure t
@@ -286,9 +275,6 @@
   (yas-reload-all)
   (add-hook 'prog-mode-hook 'yas-minor-mode))
 
-(use-package dumb-jump
-  :ensure t)
-
 ;;; Major modes ----------------------------------------------------------------
 
 (use-package emacs-lisp-mode-config
@@ -301,6 +287,7 @@
                                           ac-source-yasnippet
                                           ac-source-symbols
                                           ac-source-features)))
+
     (rainbow-mode))
 
   (add-hook 'emacs-lisp-mode-hook 'emonroy--emacs-lisp-mode-hook))
@@ -344,6 +331,7 @@
   (defun emonroy--less-css-mode-hook ()
     (setq ac-sources (append ac-sources '(ac-source-css-property
                                           ac-source-words-in-all-buffer)))
+
     (rainbow-mode))
 
   (add-hook 'less-css-mode-hook 'emonroy--less-css-mode-hook))
@@ -392,3 +380,4 @@
 
 
 (provide 'init)
+;;; init.el ends here
