@@ -39,6 +39,12 @@
 (use-package emacs-config
   :init
   (provide 'emacs-config)
+  :bind (("C-z" . undo)
+         ("M-SPC" . cycle-spacing)
+         ("M-<up>" . windmove-up)
+         ("M-<right>" . windmove-right)
+         ("M-<down>" . windmove-down)
+         ("M-<left>" . windmove-left))
   :config
   (setq-default inhibit-startup-screen t
                 initial-scratch-message nil
@@ -76,15 +82,6 @@
   :ensure t
   :bind (("C-c +" . default-text-scale-increase)
          ("C-c -" . default-text-scale-decrease)))
-
-(use-package bind-key
-  :ensure t
-  :bind (("C-z" . undo)
-         ("M-SPC" . cycle-spacing)
-         ("M-<up>" . windmove-up)
-         ("M-<right>" . windmove-right)
-         ("M-<down>" . windmove-down)
-         ("M-<left>" . windmove-left)))
 
 (use-package smex
   :ensure t
