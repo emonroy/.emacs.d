@@ -5,13 +5,6 @@
 ;; URL: https://github.com/emonroy/.emacs.d
 
 ;;; Code:
-;;; Configuration constants ----------------------------------------------------
-
-(defconst emonroy--frame-font "fira mono")
-(defconst emonroy--default-face-height 100)
-(defconst emonroy--default-face-height-hd 120)
-(defconst emonroy--default-face-height-2k 140)
-
 ;;; Package management ---------------------------------------------------------
 
 (require 'package)
@@ -93,12 +86,6 @@
   (setq-default monokai-use-variable-pitch t)
   (load-theme 'monokai t))
 
-(use-package auto-dim-other-buffers
-  :ensure t
-  :config
-  (set-face-background 'auto-dim-other-buffers-face "#1b1c17")
-  (auto-dim-other-buffers-mode))
-
 (defun emonroy--available-font-p (font)
   "Check font availability.
 Returns t when FONT is available."
@@ -112,15 +99,16 @@ Returns the display width in pixels."
       (display-pixel-width)
     0))
 
-(use-package emonroy--font-config
+(use-package emonroy--default-face-config
   :init
-  (when (emonroy--available-font-p emonroy--frame-font)
-    (set-frame-font emonroy--frame-font))
-  (let ((default-face-height emonroy--default-face-height))
+  (let ((frame-font "fira mono")
+        (default-face-height 110))
+    (when (emonroy--available-font-p frame-font)
+      (set-frame-font frame-font))
     (cond ((>= (emonroy--display-width) 2560)
-           (setq default-face-height emonroy--default-face-height-2k))
-          ((>= (emonroy--display-width) 1920)
-           (setq default-face-height emonroy--default-face-height-hd)))
+           (setq default-face-height 140))
+          ((>= (emonroy--display-width) 1440)
+           (setq default-face-height 120)))
     (set-face-attribute 'default nil
                         :height default-face-height)))
 
@@ -195,9 +183,11 @@ Returns the display width in pixels."
                 whitespace-action '(auto-cleanup))
   (global-whitespace-mode))
 
-(use-package rainbow-mode
+(use-package auto-dim-other-buffers
   :ensure t
-  :diminish rainbow-mode)
+  :config
+  (set-face-background 'auto-dim-other-buffers-face "#1b1c17")
+  (auto-dim-other-buffers-mode))
 
 (use-package anzu
   :ensure t
@@ -209,6 +199,10 @@ Returns the display width in pixels."
                       :inherit 'mode-line
                       :foreground nil)
   (global-anzu-mode))
+
+(use-package rainbow-mode
+  :ensure t
+  :diminish rainbow-mode)
 
 (use-package ace-jump-mode
   :ensure t
