@@ -61,7 +61,8 @@
   (global-hl-line-mode)
   (delete-selection-mode)
   (ido-mode)
-  (global-auto-revert-mode))
+  (global-auto-revert-mode)
+  (provide 'emonroy--emacs-config))
 
 (use-package expand-region
   :ensure t
@@ -110,7 +111,8 @@ Returns the display width in pixels."
           ((>= (emonroy--display-width) 1440)
            (setq default-face-height 120)))
     (set-face-attribute 'default nil
-                        :height default-face-height)))
+                        :height default-face-height))
+  (provide 'emonroy--default-face-config))
 
 ;;; Ido ------------------------------------------------------------------------
 
@@ -266,7 +268,8 @@ Returns the display width in pixels."
                                           ac-source-features)))
     (rainbow-mode)
     (linum-mode))
-  (add-hook 'emacs-lisp-mode-hook 'emonroy--emacs-lisp-mode-hook))
+  (add-hook 'emacs-lisp-mode-hook 'emonroy--emacs-lisp-mode-hook)
+  (provide 'emonroy--emacs-lisp-mode))
 
 (use-package dummy-h-mode
   :ensure t
@@ -280,7 +283,8 @@ Returns the display width in pixels."
                 c-basic-offset 4)
   (defun emonroy--c-mode-hook ()
     (linum-mode))
-  (add-hook 'c-mode-hook 'emonroy--c-mode-hook))
+  (add-hook 'c-mode-hook 'emonroy--c-mode-hook)
+  (provide 'emonroy--c-mode))
 
 (use-package emonroy--c++-mode
   :init
@@ -288,7 +292,8 @@ Returns the display width in pixels."
   (defun init-c++-mode ()
     (setq flycheck-gcc-language-standard "c++11")
     (linum-mode))
-  (add-hook 'c++-mode-hook 'init-c++-mode))
+  (add-hook 'c++-mode-hook 'init-c++-mode)
+  (provide 'emonroy--c++-mode))
 
 (use-package less-css-mode
   :ensure t
