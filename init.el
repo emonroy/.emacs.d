@@ -110,7 +110,7 @@ Returns the display width in pixels."
     (cond ((>= (emonroy--display-width) 2560)
            (setq default-face-height 140))
           ((>= (emonroy--display-width) 1440)
-           (setq default-face-height 120)))
+           (setq default-face-height 110)))
     (set-face-attribute 'default nil
                         :height default-face-height))
   (provide 'emonroy--default-face-config))
