@@ -210,6 +210,12 @@ Returns the display width in pixels."
   :ensure t
   :bind (("C-c SPC" . ace-jump-mode)))
 
+(use-package ace-window
+  :ensure t
+  :bind ("C-c o" . ace-window)
+  :config
+  (setq-default aw-keys '(?a ?b ?c ?d ?e ?f ?g ?h ?i)))
+
 (use-package dumb-jump
   :ensure t
   :bind ("C-c g" . dumb-jump-go))

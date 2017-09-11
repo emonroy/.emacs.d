@@ -11,7 +11,8 @@ My modest Emacs configuration with `use-package`.
 
 | Command                     | Key         | Description                |
 | --------------------------- | ----------- | -------------------------- |
-| `ace-jump-mode`             | `C-c` `SPC` | enable ace jump mode       |
+| `ace-jump-mode`             | `C-c` `SPC` | ace jump to character      |
+| `ace-window'                | `C-c` `o`   | ace jump to window         |
 | `anzu-query-replace`        | `C-c` `%`   | replace query              |
 | `auto-complete`             | `<tab> `    | auto complete              |
 | `cycle-spacing`             | `M-SPC`     | delete extra whitespace    |
