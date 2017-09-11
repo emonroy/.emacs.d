@@ -214,9 +214,7 @@ Returns the display width in pixels."
 
 (use-package ace-window
   :ensure t
-  :bind ("C-x o" . ace-window)
-  :config
-  (setq-default aw-keys '(?a ?b ?c ?d ?e ?f ?g ?h ?i)))
+  :bind ("C-x o" . ace-window))
 
 (use-package dumb-jump
   :ensure t
