@@ -188,6 +188,7 @@ Returns the display width in pixels."
 
 (use-package auto-dim-other-buffers
   :ensure t
+  :diminish auto-dim-other-buffers-mode
   :config
   (set-face-background 'auto-dim-other-buffers-face "#1b1c17")
   (auto-dim-other-buffers-mode))
