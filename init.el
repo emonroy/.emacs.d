@@ -289,10 +289,10 @@ Returns the display width in pixels."
 (use-package emonroy--c++-mode
   :init
   (c-set-offset 'inline-open 0)
-  (defun init-c++-mode ()
+  (defun emonroy--c++-mode-hook ()
     (setq flycheck-gcc-language-standard "c++11")
     (linum-mode))
-  (add-hook 'c++-mode-hook 'init-c++-mode)
+  (add-hook 'c++-mode-hook 'emonroy--c++-mode-hook)
   (provide 'emonroy--c++-mode))
 
 (use-package less-css-mode
