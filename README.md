@@ -27,6 +27,7 @@ My modest Emacs configuration with `use-package`.
 | `helm-multi-swoop-all`      | `C-c` `S`   | search in all buffers      |
 | `helm-projectile-find-file` | `C-c` `f`   | search file in project     |
 | `helm-swoop`                | `C-c` `s`   | search in buffer           |
+| `neotree-toggle`            | `C-c` `n`   | toggle neotree             |
 | `smex`                      | `M-x`       | smex `M-x` command         |
 | `undo`                      | `C-z`       | undo                       |
 | `windmove`                  | `M-<up>`    | move to frame above        |

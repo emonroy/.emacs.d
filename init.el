@@ -79,6 +79,10 @@
   :config
   (smex-initialize))
 
+(use-package neotree
+  :ensure t
+  :bind (("C-c n" . neotree-toggle)))
+
 ;;; Theme ----------------------------------------------------------------------
 
 (use-package monokai-theme
