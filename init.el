@@ -31,11 +31,7 @@
 
 (use-package emonroy--emacs-config
   :bind (("C-z" . undo)
-         ("M-SPC" . cycle-spacing)
-         ("M-<up>" . windmove-up)
-         ("M-<right>" . windmove-right)
-         ("M-<down>" . windmove-down)
-         ("M-<left>" . windmove-left))
+         ("M-SPC" . cycle-spacing))
   :init
   (setq-default inhibit-startup-screen t
                 initial-scratch-message nil
@@ -50,6 +46,7 @@
                 mouse-wheel-progressive-speed nil)
   (load custom-file t)
   (fset 'yes-or-no-p 'y-or-n-p)
+  (windmove-default-keybindings 'meta)
   (menu-bar-mode -1)
   (tool-bar-mode -1)
   (scroll-bar-mode -1)
