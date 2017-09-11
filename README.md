@@ -2,6 +2,8 @@
 
 My modest Emacs configuration with `use-package`.
 
+![image](https://user-images.githubusercontent.com/4209763/30265079-dad82a9a-968f-11e7-83ad-19831df24927.png)
+
 ## Requirements
 
 * [Fira Mono](https://fonts.google.com/specimen/Fira+Mono)
