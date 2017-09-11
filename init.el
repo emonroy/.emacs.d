@@ -63,12 +63,12 @@
 
 (use-package expand-region
   :ensure t
-  :bind (("C-+" . er/expand-region)))
+  :bind (("C-c e" . er/expand-region)))
 
 (use-package default-text-scale
   :ensure t
-  :bind (("C-c +" . default-text-scale-increase)
-         ("C-c -" . default-text-scale-decrease)))
+  :bind (("<f5>" . default-text-scale-decrease)
+         ("<f6>" . default-text-scale-increase)))
 
 (use-package smex
   :ensure t
@@ -78,7 +78,7 @@
 
 (use-package neotree
   :ensure t
-  :bind (("C-c n" . neotree-toggle)))
+  :bind (("<f8>" . neotree-toggle)))
 
 ;;; Theme ----------------------------------------------------------------------
 
@@ -196,7 +196,7 @@ Returns the display width in pixels."
   :ensure t
   :demand t
   :diminish anzu-mode
-  :bind (("C-c %" . anzu-query-replace))
+  :bind (("M-%" . anzu-query-replace))
   :config
   (set-face-attribute 'anzu-mode-line nil
                       :inherit 'mode-line
@@ -213,13 +213,14 @@ Returns the display width in pixels."
 
 (use-package ace-window
   :ensure t
-  :bind ("C-c o" . ace-window)
+  :bind ("C-x o" . ace-window)
   :config
   (setq-default aw-keys '(?a ?b ?c ?d ?e ?f ?g ?h ?i)))
 
 (use-package dumb-jump
   :ensure t
-  :bind ("C-c g" . dumb-jump-go))
+  :bind (("C-c g" . dumb-jump-go)
+         ("C-c p" . dumb-jump-back)))
 
 (use-package projectile
   :ensure t

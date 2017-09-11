@@ -12,22 +12,23 @@ My modest Emacs configuration with `use-package`.
 | Command                     | Key         | Description                |
 | --------------------------- | ----------- | -------------------------- |
 | `ace-jump-mode`             | `C-c` `SPC` | ace jump to character      |
-| `ace-window'                | `C-c` `o`   | ace jump to window         |
-| `anzu-query-replace`        | `C-c` `%`   | replace query              |
-| `auto-complete`             | `<tab> `    | auto complete              |
+| `ace-window`                | `C-x` `o`   | ace jump to window         |
+| `anzu-query-replace`        | `M-%`       | replace query              |
+| `auto-complete`             | `<tab>`     | auto complete              |
 | `cycle-spacing`             | `M-SPC`     | delete extra whitespace    |
-| `default-text-scale`        | `C-c` `+`   | increase text size         |
-|                             | `C-c` `-`   | decrease text size         |
-| `dumb-jump-go`              | `C-c` `g`   | jump to definition         |
-| `expand-region`             | `C-+`       | expand region              |
+| `default-text-scale`        | `<f5>`      | decrease text size         |
+|                             | `<f6>`      | increase text size         |
+| `dumb-jump`                 | `C-c` `g`   | jump to definition         |
+|                             | `C-c` `p`   | jump back to last position |
+| `expand-region`             | `C-c` `e`   | expand region              |
 | `helm-M-x`                  | `C-c` `x`   | helm `M-x` command         |
-| `helm-do-ag`                | `C-c` `a`   | search in directory        |
 | `helm-do-ag-project-root`   | `C-c` `r`   | search in project root     |
+| `helm-do-ag`                | `C-c` `a`   | search in directory        |
 | `helm-mini`                 | `C-c` `b`   | helm buffer selection      |
 | `helm-multi-swoop-all`      | `C-c` `S`   | search in all buffers      |
 | `helm-projectile-find-file` | `C-c` `f`   | search file in project     |
 | `helm-swoop`                | `C-c` `s`   | search in buffer           |
-| `neotree-toggle`            | `C-c` `n`   | toggle neotree             |
+| `neotree-toggle`            | `<f8>`      | toggle neotree             |
 | `smex`                      | `M-x`       | smex `M-x` command         |
 | `undo`                      | `C-z`       | undo                       |
 | `windmove`                  | `M-<up>`    | move to frame above        |
