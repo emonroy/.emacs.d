@@ -113,6 +113,7 @@ Returns the display width in pixels."
            (setq default-face-height 110)))
     (set-face-attribute 'default nil
                         :height default-face-height))
+  (toggle-frame-maximized)
   (provide 'emonroy--default-face-config))
 
 ;;; Ido ------------------------------------------------------------------------
