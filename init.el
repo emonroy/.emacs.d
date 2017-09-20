@@ -317,9 +317,11 @@ Returns the display width in pixels."
 
 (use-package web-mode
   :ensure t
-  :mode "\\.html?\\'"
+  :mode ("\\.html?"
+         "\\.hbs")
   :config
-  (setq-default web-mode-engines-alist '(("django" . "\\.html?\\'"))
+  (setq-default web-mode-engines-alist '(("django" . "\\.html?")
+                                         ("ctemplate" . "\\.hbs"))
                 web-mode-css-indent-offset 4
                 web-mode-markup-indent-offset 2
                 web-mode-code-indent-offset 4
