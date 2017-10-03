@@ -195,7 +195,7 @@ Returns the display width in pixels."
   :ensure t
   :diminish auto-dim-other-buffers-mode
   :config
-  (set-face-background 'auto-dim-other-buffers-face "#1b1c17")
+  (set-face-background 'auto-dim-other-buffers-face "#0d0d0d")
   (auto-dim-other-buffers-mode))
 
 (use-package anzu
@@ -242,6 +242,9 @@ Returns the display width in pixels."
   :ensure t
   :config
   (setq-default diff-hl-draw-borders nil)
+  (set-face-background 'diff-hl-insert monokai-green)
+  (set-face-background 'diff-hl-change monokai-yellow)
+  (set-face-background 'diff-hl-delete monokai-red)
   (diff-hl-flydiff-mode)
   (global-diff-hl-mode))
 
