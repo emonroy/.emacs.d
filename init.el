@@ -187,6 +187,10 @@ Returns the display width in pixels."
                 whitespace-action '(auto-cleanup))
   (global-whitespace-mode))
 
+(use-package linum
+  :config
+  (add-hook 'prog-mode-hook 'linum-mode))
+
 (use-package auto-dim-other-buffers
   :ensure t
   :diminish auto-dim-other-buffers-mode
@@ -280,8 +284,7 @@ Returns the display width in pixels."
                                           ac-source-yasnippet
                                           ac-source-symbols
                                           ac-source-features)))
-    (rainbow-mode)
-    (linum-mode))
+    (rainbow-mode))
   (add-hook 'emacs-lisp-mode-hook 'emonroy--emacs-lisp-mode-hook)
   (provide 'emonroy--emacs-lisp-mode))
 
@@ -295,17 +298,13 @@ Returns the display width in pixels."
   :init
   (setq-default c-default-style "k&r"
                 c-basic-offset 4)
-  (defun emonroy--c-mode-hook ()
-    (linum-mode))
-  (add-hook 'c-mode-hook 'emonroy--c-mode-hook)
   (provide 'emonroy--c-mode))
 
 (use-package emonroy--c++-mode
   :init
   (c-set-offset 'inline-open 0)
   (defun emonroy--c++-mode-hook ()
-    (setq flycheck-gcc-language-standard "c++11")
-    (linum-mode))
+    (setq flycheck-gcc-language-standard "c++11"))
   (add-hook 'c++-mode-hook 'emonroy--c++-mode-hook)
   (provide 'emonroy--c++-mode))
 
@@ -338,8 +337,7 @@ Returns the display width in pixels."
                 web-mode-enable-auto-pairing nil
                 web-mode-enable-current-element-highlight t)
   (defun emonroy--web-mode-hook()
-    (setq ac-sources (append ac-sources '(ac-source-words-in-all-buffer)))
-    (linum-mode))
+    (setq ac-sources (append ac-sources '(ac-source-words-in-all-buffer))))
   (add-hook 'web-mode-hook 'emonroy--web-mode-hook))
 
 (use-package js2-mode
@@ -351,8 +349,7 @@ Returns the display width in pixels."
                 js2-include-node-externs t
                 js2-strict-trailing-comma-warning nil)
   (defun emonroy--js2-mode-hook ()
-    (setq ac-sources (append ac-sources '(ac-source-words-in-all-buffer)))
-    (linum-mode))
+    (setq ac-sources (append ac-sources '(ac-source-words-in-all-buffer))))
   (add-hook 'js2-mode-hook 'emonroy--js2-mode-hook))
 
 (use-package lua-mode
