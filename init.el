@@ -234,6 +234,12 @@ Returns the display width in pixels."
   (add-hook 'projectile-mode-hook 'helm-projectile-on)
   (add-hook 'prog-mode-hook 'projectile-mode))
 
+(use-package diff-hl
+  :ensure t
+  :config
+  (diff-hl-flydiff-mode)
+  (global-diff-hl-mode))
+
 (use-package flycheck
   :ensure t
   :diminish flycheck-mode
@@ -332,7 +338,8 @@ Returns the display width in pixels."
                 web-mode-enable-auto-pairing nil
                 web-mode-enable-current-element-highlight t)
   (defun emonroy--web-mode-hook()
-    (setq ac-sources (append ac-sources '(ac-source-words-in-all-buffer))))
+    (setq ac-sources (append ac-sources '(ac-source-words-in-all-buffer)))
+    (linum-mode))
   (add-hook 'web-mode-hook 'emonroy--web-mode-hook))
 
 (use-package js2-mode
