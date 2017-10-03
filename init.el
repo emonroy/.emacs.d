@@ -241,6 +241,7 @@ Returns the display width in pixels."
 (use-package diff-hl
   :ensure t
   :config
+  (setq-default diff-hl-draw-borders nil)
   (diff-hl-flydiff-mode)
   (global-diff-hl-mode))
 
