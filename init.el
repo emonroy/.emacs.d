@@ -55,7 +55,6 @@
   (column-number-mode)
   (electric-pair-mode)
   (show-paren-mode)
-  (global-hl-line-mode)
   (delete-selection-mode)
   (ido-mode)
   (global-auto-revert-mode)
@@ -143,12 +142,12 @@ Returns the display width in pixels."
   :bind (("C-c x" . helm-M-x)
          ("C-c b" . helm-mini))
   :config
-  (setq-default helm-split-window-in-side-p t
+  (setq-default helm-split-window-default-side 'same
+                helm-input-idle-delay 0.2
                 helm-M-x-fuzzy-match t
-                helm-candidate-number-limit 10)
+                helm-allow-mouse t)
   (set-face-attribute 'helm-selection nil
-                      :underline nil)
-  (helm-autoresize-mode))
+                      :underline nil))
 
 (use-package helm-ag
   :ensure t
@@ -156,16 +155,18 @@ Returns the display width in pixels."
          ("C-c r" . helm-do-ag-project-root))
   :config
   (setq-default helm-ag-command-option "--ignore-case"
+                helm-ag-insert-at-point 'symbol
                 helm-ag-use-agignore t
                 helm-ag-fuzzy-match t))
 
 (use-package helm-swoop
   :ensure t
   :bind (("C-c s" . emonroy--helm-swoop-multiline-4)
-         ("C-c S" . helm-multi-swoop-all))
+         ("C-c S" . helm-multi-swoop))
   :config
   (setq-default helm-swoop-move-to-line-cycle nil
-                helm-swoop-speed-or-color nil
+                helm-swoop-speed-or-color t
+                helm-swoop-use-line-number-face t
                 helm-swoop-split-with-multiple-windows t
                 helm-swoop-split-direction 'split-window-vertically)
   (defun emonroy--helm-swoop-multiline-4 ()
