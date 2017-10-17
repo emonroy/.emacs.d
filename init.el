@@ -77,7 +77,11 @@
 
 (use-package neotree
   :ensure t
-  :bind (("<f8>" . neotree-toggle)))
+  :bind (("<f8>" . neotree-toggle))
+  :config
+  (setq-default neo-auto-indent-point t
+                neo-create-file-auto-open t
+                neo-force-change-root t))
 
 ;;; Theme ----------------------------------------------------------------------
 
