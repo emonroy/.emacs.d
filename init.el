@@ -161,8 +161,8 @@ Returns the display width in pixels."
 
 (use-package helm-swoop
   :ensure t
-  :bind (("C-c s" . emonroy--helm-swoop-multiline-4)
-         ("C-c S" . helm-multi-swoop))
+  :bind (("C-c s" . helm-swoop)
+         ("C-c S" . emonroy--helm-swoop-multiline-4))
   :config
   (setq-default helm-swoop-move-to-line-cycle nil
                 helm-swoop-speed-or-color t

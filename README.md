@@ -27,9 +27,9 @@ My modest Emacs configuration with `use-package`.
 | `helm-do-ag-project-root`   | `C-c` `r`   | search in project root     |
 | `helm-do-ag`                | `C-c` `a`   | search in directory        |
 | `helm-mini`                 | `C-c` `b`   | helm buffer selection      |
-| `helm-multi-swoop-all`      | `C-c` `S`   | search in all buffers      |
 | `helm-projectile-find-file` | `C-c` `f`   | search file in project     |
 | `helm-swoop`                | `C-c` `s`   | search in buffer           |
+| `helm-swoop-multiline`      | `C-c` `S`   | multiline search in buffer |
 | `neotree-toggle`            | `<f8>`      | toggle neotree             |
 | `smex`                      | `M-x`       | smex `M-x` command         |
 | `undo`                      | `C-z`       | undo                       |
