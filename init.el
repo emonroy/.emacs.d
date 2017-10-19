@@ -274,16 +274,27 @@ Returns the display width in pixels."
 
 (use-package yasnippet
   :ensure t
+  :demand t
   :diminish yas-minor-mode
+  :bind (:map yas-minor-mode-map
+              ("TAB" . nil)
+              ("<tab>" . nil)
+              ("C-<tab>" . yas-expand))
   :config
   (setq-default yas-also-auto-indent-first-line t)
-  (define-key yas-minor-mode-map (kbd "TAB") nil)
-  (define-key yas-minor-mode-map (kbd "<tab>") nil)
-  (define-key yas-minor-mode-map (kbd "C-<tab>") 'yas-expand)
   (yas-reload-all)
   (add-hook 'prog-mode-hook 'yas-minor-mode))
 
 ;;; Major modes ----------------------------------------------------------------
+
+(use-package org
+  :bind (:map org-mode-map
+              ("M-<up>" . nil)
+              ("M-<right>" . nil)
+              ("M-<down>" . nil)
+              ("M-<left>" . nil))
+  :config
+  (setq-default org-startup-folded nil))
 
 (use-package emonroy--emacs-lisp-mode
   :init
