@@ -146,9 +146,10 @@ Returns the display width in pixels."
   :bind (("C-c x" . helm-M-x)
          ("C-c b" . helm-mini))
   :config
-  (setq-default helm-split-window-default-side 'same
+  (setq-default helm-full-frame t
                 helm-input-idle-delay 0.2
                 helm-M-x-fuzzy-match t
+                helm-candidate-number-limit 10
                 helm-allow-mouse t)
   (set-face-attribute 'helm-selection nil
                       :underline nil))
@@ -160,8 +161,7 @@ Returns the display width in pixels."
   :config
   (setq-default helm-ag-command-option "--ignore-case"
                 helm-ag-insert-at-point 'symbol
-                helm-ag-use-agignore t
-                helm-ag-fuzzy-match t))
+                helm-ag-use-agignore t))
 
 (use-package helm-swoop
   :ensure t
