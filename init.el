@@ -77,11 +77,18 @@
 
 (use-package neotree
   :ensure t
+  :demand t
   :bind (("<f8>" . neotree-toggle))
   :config
   (setq-default neo-auto-indent-point t
                 neo-create-file-auto-open t
-                neo-force-change-root t))
+                neo-show-hidden-files t
+                neo-force-change-root t)
+  (defun emonroy--neotree-hook ()
+    (interactive)
+    (neotree-show)
+    (call-interactively 'other-window))
+  (add-hook 'after-init-hook 'emonroy--neotree-hook))
 
 ;;; Theme ----------------------------------------------------------------------
 
