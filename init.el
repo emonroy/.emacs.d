@@ -155,7 +155,7 @@ Returns the display width in pixels."
   (setq-default helm-full-frame t
                 helm-input-idle-delay 0.2
                 helm-M-x-fuzzy-match t
-                helm-candidate-number-limit 10
+                helm-candidate-number-limit 50
                 helm-allow-mouse t)
   (set-face-attribute 'helm-selection nil
                       :underline nil))
