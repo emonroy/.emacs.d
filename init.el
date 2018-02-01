@@ -53,7 +53,6 @@
   (winner-mode)
   (line-number-mode)
   (column-number-mode)
-  (electric-pair-mode)
   (show-paren-mode)
   (delete-selection-mode)
   (ido-mode)
