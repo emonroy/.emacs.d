@@ -63,6 +63,12 @@
   :ensure t
   :bind (("C-c e" . er/expand-region)))
 
+(use-package whole-line-or-region
+  :ensure t
+  :diminish whole-line-or-region-local-mode
+  :config
+  (whole-line-or-region-global-mode))
+
 (use-package default-text-scale
   :ensure t
   :bind (("<f5>" . default-text-scale-decrease)
