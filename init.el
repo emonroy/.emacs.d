@@ -314,12 +314,6 @@ Returns the display width in pixels."
   (add-hook 'emacs-lisp-mode-hook 'emonroy--emacs-lisp-mode-hook)
   (provide 'emonroy--emacs-lisp-mode))
 
-(use-package dummy-h-mode
-  :ensure t
-  :mode "\\.h\\'"
-  :config
-  (setq-default dummy-h-mode-default-major-mode 'c++-mode))
-
 (use-package emonroy--c-mode
   :init
   (setq-default c-default-style "k&r"
