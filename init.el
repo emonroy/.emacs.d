@@ -19,8 +19,12 @@
 
 (eval-when-compile
   (require 'use-package))
-(require 'diminish)
-(require 'bind-key)
+
+(use-package diminish
+  :ensure t)
+
+(use-package bind-key
+  :ensure t)
 
 (use-package paradox
   :ensure t
@@ -119,13 +123,14 @@ Returns the display width in pixels."
 (use-package emonroy--default-face-config
   :init
   (let ((frame-font "fira mono")
+        (display-width (emonroy--display-width))
         (default-face-height 110))
     (when (emonroy--available-font-p frame-font)
       (set-frame-font frame-font))
-    (cond ((>= (emonroy--display-width) 2560)
+    (cond ((>= display-width 2560)
            (setq default-face-height 140))
-          ((>= (emonroy--display-width) 1440)
-           (setq default-face-height 110)))
+          ((>= display-width 1440)
+           (setq default-face-height 140)))
     (set-face-attribute 'default nil
                         :height default-face-height))
   (toggle-frame-maximized)
