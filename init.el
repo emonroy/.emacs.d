@@ -84,6 +84,13 @@
   :config
   (smex-initialize))
 
+(defun emonroy--display-width ()
+  "Get display width.
+Returns the display width in pixels."
+  (if (display-graphic-p)
+      (display-pixel-width)
+    0))
+
 (use-package neotree
   :ensure t
   :demand t
@@ -93,6 +100,8 @@
                 neo-create-file-auto-open t
                 neo-show-hidden-files t
                 neo-force-change-root t)
+  (when (>= (emonroy--display-width) 1440)
+    (setq-default neo-window-width 40))
   (defun emonroy--neotree-hook ()
     (interactive)
     (neotree-show)
@@ -113,13 +122,6 @@ Returns t when FONT is available."
   (when (find-font (font-spec :name font))
     t))
 
-(defun emonroy--display-width ()
-  "Get display width.
-Returns the display width in pixels."
-  (if (display-graphic-p)
-      (display-pixel-width)
-    0))
-
 (use-package emonroy--default-face-config
   :init
   (let ((frame-font "fira mono")
@@ -130,7 +132,7 @@ Returns the display width in pixels."
     (cond ((>= display-width 2560)
            (setq default-face-height 140))
           ((>= display-width 1440)
-           (setq default-face-height 140)))
+           (setq default-face-height 120)))
     (set-face-attribute 'default nil
                         :height default-face-height))
   (toggle-frame-maximized)
@@ -250,7 +252,6 @@ Returns the display width in pixels."
 
 (use-package projectile
   :ensure t
-  :diminish projectile-mode
   :init
   (setq-default projectile-keymap-prefix (kbd "C-c C-p"))
   :config
