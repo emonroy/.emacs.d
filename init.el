@@ -9,7 +9,7 @@
 
 (require 'package)
 (setq package-enable-at-startup nil)
-(add-to-list 'package-archives '("melpa" . "http://stable.melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa stable" . "http://stable.melpa.org/packages/"))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -29,6 +29,12 @@
   :ensure t
   :config
   (setq-default paradox-github-token -1))
+
+(use-package auto-package-update
+  :ensure t
+  :config
+  (setq-default auto-package-update-delete-old-versions t)
+  (auto-package-update-maybe))
 
 ;;; Emacs configuration --------------------------------------------------------
 
@@ -66,13 +72,11 @@
   :ensure t
   :bind (("C-c e" . er/expand-region)))
 
-;; Not available on MELPA Stable
 (use-package whole-line-or-region
-  :disabled
   :ensure t
   :diminish whole-line-or-region-local-mode
   :config
-  (whole-line-or-region-global-mode))
+  (whole-line-or-region-mode))
 
 (use-package default-text-scale
   :ensure t
@@ -217,15 +221,6 @@ Returns t when FONT is available."
   :config
   (add-hook 'prog-mode-hook 'linum-mode))
 
-;; Not available on MELPA Stable
-(use-package auto-dim-other-buffers
-  :disabled
-  :ensure t
-  :diminish auto-dim-other-buffers-mode
-  :config
-  (set-face-background 'auto-dim-other-buffers-face "#0d0d0d")
-  (auto-dim-other-buffers-mode))
-
 (use-package anzu
   :ensure t
   :demand t
@@ -298,8 +293,8 @@ Returns t when FONT is available."
   :demand t
   :diminish yas-minor-mode
   :bind (:map yas-minor-mode-map
-              ("TAB" . nil)
-              ("<tab>" . nil)
+              ("TAB"     . nil)
+              ("<tab>"   . nil)
               ("C-<tab>" . yas-expand))
   :config
   (setq-default yas-also-auto-indent-first-line t)
@@ -310,10 +305,10 @@ Returns t when FONT is available."
 
 (use-package org
   :bind (:map org-mode-map
-              ("M-<up>" . nil)
+              ("M-<up>"    . nil)
               ("M-<right>" . nil)
-              ("M-<down>" . nil)
-              ("M-<left>" . nil))
+              ("M-<down>"  . nil)
+              ("M-<left>"  . nil))
   :config
   (setq-default org-startup-folded nil))
 
@@ -361,9 +356,9 @@ Returns t when FONT is available."
          "\\.hbs"
          "\\.tl")
   :config
-  (setq-default web-mode-engines-alist '(("django" . "\\.html?")
+  (setq-default web-mode-engines-alist '(("django"    . "\\.html?")
                                          ("ctemplate" . "\\.hbs")
-                                         ("dust" . "\\.tl"))
+                                         ("dust"      . "\\.tl"))
                 web-mode-css-indent-offset 4
                 web-mode-markup-indent-offset 2
                 web-mode-code-indent-offset 4
