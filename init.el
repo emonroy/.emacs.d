@@ -9,8 +9,7 @@
 
 (require 'package)
 (setq package-enable-at-startup nil)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://stable.melpa.org/packages/"))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -67,7 +66,9 @@
   :ensure t
   :bind (("C-c e" . er/expand-region)))
 
+;; Not available on MELPA Stable
 (use-package whole-line-or-region
+  :disabled
   :ensure t
   :diminish whole-line-or-region-local-mode
   :config
@@ -97,6 +98,7 @@ Returns the display width in pixels."
   :bind (("<f8>" . neotree-toggle))
   :config
   (setq-default neo-auto-indent-point t
+                neo-autorefresh nil
                 neo-create-file-auto-open t
                 neo-show-hidden-files t
                 neo-force-change-root t)
@@ -215,7 +217,9 @@ Returns t when FONT is available."
   :config
   (add-hook 'prog-mode-hook 'linum-mode))
 
+;; Not available on MELPA Stable
 (use-package auto-dim-other-buffers
+  :disabled
   :ensure t
   :diminish auto-dim-other-buffers-mode
   :config
@@ -279,7 +283,6 @@ Returns t when FONT is available."
 
 (use-package auto-complete
   :ensure t
-  :diminish auto-complete-mode
   :config
   (require 'auto-complete-config)
   (setq-default ac-use-menu-map t
