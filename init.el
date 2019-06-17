@@ -40,7 +40,8 @@
 
 (use-package emonroy--emacs-config
   :bind (("C-z" . undo)
-         ("M-SPC" . cycle-spacing))
+         ("M-SPC" . cycle-spacing)
+         ("C-x C-b" . nil))
   :init
   (setq-default inhibit-startup-screen t
                 initial-scratch-message nil
@@ -66,6 +67,7 @@
   (delete-selection-mode)
   (ido-mode)
   (global-auto-revert-mode)
+  (electric-pair-mode)
   (provide 'emonroy--emacs-config))
 
 (use-package expand-region
@@ -225,7 +227,8 @@ Returns t when FONT is available."
   :ensure t
   :demand t
   :diminish anzu-mode
-  :bind (("M-%" . anzu-query-replace))
+  :bind (("M-%" . anzu-query-replace)
+         ("C-c %" . anzu-query-replace-regexp))
   :config
   (set-face-attribute 'anzu-mode-line nil
                       :inherit 'mode-line
